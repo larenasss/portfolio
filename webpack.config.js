@@ -11,23 +11,24 @@ module.exports = (env, argv) => {
   const isProductionBuild = argv.mode === "production";
   const publicPath = '/';
 
+  // Тут начинается описание зависимостей
   const pcss = {
-    test: /\.(p|post|)css$/,
+    test: /\.(p|post|)css$/, // регулярное выражение для проверки пути (если совпадет, применит файлы обработки ниже)
     use: [
-      isProductionBuild ? MiniCssExtractPlugin.loader : "vue-style-loader",
-      "css-loader",
-      "postcss-loader"
+      isProductionBuild ? MiniCssExtractPlugin.loader : "vue-style-loader", // Из строки сгенирирует теги стайл и применит
+      "css-loader", // Превратит в строку
+      "postcss-loader" // Превращает в обычный css
     ]
   };
 
   const vue = {
-    test: /\.vue$/,
+    test: /\.vue$/,  
     loader: "vue-loader"
   };
 
   const js = {
     test: /\.js$/,
-    loader: "babel-loader",
+    loader: "babel-loader", 
     exclude: /node_modules/,
     options: {
       presets: ['@babel/preset-env'],
@@ -83,18 +84,21 @@ module.exports = (env, argv) => {
     ]
   };
 
+  // Тут заканчивается
+
+
   const config = {
-    entry: {
+    entry: {     // Слежка за файлами js
       main: "./src/main.js",
       admin: "./src/admin/main.js"
     },
-    output: {
-      path: path.resolve(__dirname, "./dist"),
-      filename: "[name].[hash].build.js",
+    output: {    // Указывает место куда отправляются файлы после обработки
+      path: path.resolve(__dirname, "./dist"), // Методом path прописан абсолютный путь,который будет склеен с папкой dist
+      filename: "[name].[hash].build.js", // name - имя файла; hash - строка, сгенерированная на основе содержимого файла
       publicPath: isProductionBuild ? publicPath : "",
-      chunkFilename: "[chunkhash].js"
+      chunkFilename: "[chunkhash].js" // отслеживание зависимостей и общие выносит в отдельный файл
     },
-    module: {
+    module: { // правила по которым стоит обрабатывать зависимости(указаны в самом начале)
       rules: [pcss, vue, js, files, svg, pug]
     },
     resolve: {
@@ -104,39 +108,39 @@ module.exports = (env, argv) => {
       },
       extensions: ["*", ".js", ".vue", ".json"]
     },
-    devServer: {
-      historyApiFallback: true,
-      noInfo: false,
-      overlay: true
+    devServer: { // Сервер в браузере для разработки
+      historyApiFallback: true, // авто прописка URL
+      noInfo: false, // Надписи об успехе либо ошибки
+      overlay: true // Оверлей при ошибке
     },
-    performance: {
+    performance: { // Подсказки вебпака
       hints: false
     },
-    plugins: [
+    plugins: [ // Плагины
       new HtmlWebpackPlugin({
-        template: "src/index.pug",
-        chunks: ["main"]
+        template: "src/index.pug", // Указываем из какого файла собрать HTML с зависимостями
+        chunks: ["main"] // Будет подключен js
       }),
-      new HtmlWebpackPlugin({
+      new HtmlWebpackPlugin({ // -/- для админки
         template: "src/admin/index.pug",
         filename: "admin/index.html",
         chunks: ["admin"]
       }),
-      new SpriteLoaderPlugin({ plainSprite: true }),
-      new VueLoaderPlugin()
+      new SpriteLoaderPlugin({ plainSprite: true }), // Соберет спрайт
+      new VueLoaderPlugin() // Это требует вью
     ],
-    devtool: "#eval-source-map"
+    devtool: "#eval-source-map" // Отображет где была строчка в исходнике
   };
 
-  if (isProductionBuild) {
-    config.devtool = "none";
+  if (isProductionBuild) { // Для продакшена
+    config.devtool = "none"; // Убрать все сорсмапы
     config.plugins = (config.plugins || []).concat([
       new webpack.DefinePlugin({
-        "process.env": {
+        "process.env": { 
           NODE_ENV: '"production"'
         }
       }),
-      new MiniCssExtractPlugin({
+      new MiniCssExtractPlugin({ // Выделение css в отдельные файлы
         filename: "[name].[contenthash].css",
         chunkFilename: "[contenthash].css"
       })
@@ -144,13 +148,13 @@ module.exports = (env, argv) => {
 
     config.optimization = {};
 
-    config.optimization.minimizer = [
+    config.optimization.minimizer = [ // Сжимание js
       new TerserPlugin({
         cache: true,
         parallel: true,
         sourceMap: false
       }),
-      new OptimizeCSSAssetsPlugin({})
+      new OptimizeCSSAssetsPlugin({}) // Сжимание CSS
     ];
   }
 
