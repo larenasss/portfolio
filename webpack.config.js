@@ -9,7 +9,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (env, argv) => {
   const isProductionBuild = argv.mode === "production";
-  const publicPath = 'https://github.com/larenasss/portfolio/';
+  const publicPath = '/portfolio/';
 
   // Тут начинается описание зависимостей
   const pcss = {
