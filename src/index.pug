@@ -85,31 +85,34 @@ html(lang="en")
                                 circle(r='40' cx='50' cy='50').skill__circle.skill__circle--position--above
                               .skill__title #{skill}
           section.section.works
-            h3.works__title Мои работы
-              .works__left
-                .slider
-                  +image('content/user.jpg', 'slider__fillpic')
-                  .slider__preview
-                    ul.previews
-                      - for (var i = 0; i < 3; i++)
-                        li.previews__item
-                          img.previews__pic
-                  .slider__buttons
-                    .slider-buttons
-                      button.slider-buttons__item.slider-buttons__item--slide--prev
-                      button.slider-buttons__item.slider-buttons__item--slide--next
-              .works__right
-                .works__tags
-                  - var tags = ['HTML3', 'CSS3', 'javascript']
-                  each tag in tags
+            .container.works__container
+              h3.works__title Мои работы
+              .works__content
+                .works__left
+                  .slider
+                    .slider__preview
+                      ul.previews
+                        - for (var i = 0; i < 4; i++)
+                          li.previews__item
+                            +image('content/slider/slider_1.jpg', 'previews__pic')
+                      ul.works__number
+                        li.works__number-item 2
+                    .slider__buttons
+                      .slider-buttons
+                        button.slider-buttons__item.slider-buttons__item--slide--prev
+                        button.slider-buttons__item.slider-buttons__item--slide--next
+                .works__right
+                  .works__tags
+                    - var tags = ['HTML3', 'CSS3', 'javascript']
                     ul.tags
-                      li.tags__item #{tag}
-                .works__text
-                  h3.works__title Сайт школы
-                  .works__desc-text
-                    p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                  a.iconed-link(href="")
-                    +icon('link', 'iconed-link__icon')
+                      each tag in tags
+                        li.tags__item #{tag}
+                  .works__text
+                    h3.works__text-title Сайт школы образования
+                    .works__desc-text
+                      p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                    a.works__text-link(href="") Посмотреть сайт
+                      +icon('link', 'works__text__icon')
 
           section.section.reviews    
             .container.container__reviews
