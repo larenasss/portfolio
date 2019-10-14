@@ -24,6 +24,16 @@
    height: 50%;
    background-color: #353e4e;
 
+   &:hover {
+      background-color: #4b6fd7;
+      transition: .8s;
+      
+      &::after {
+         border-left-color: #4b6fd7;
+         transition: .8s;
+      }  
+   }
+
    &::before {
       content: "";
       position: absolute;
@@ -43,7 +53,6 @@
       border-left-color: #353e4e;
       right: 24px;
       border-right-width: 0;
-     
    }
 }
 
