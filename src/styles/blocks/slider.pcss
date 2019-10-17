@@ -1,0 +1,61 @@
+.slider {
+   background: url('../images/content/works.jpg') center center / cover no-repeat;
+   width: 975px;
+   height: 549px;
+   position: relative;
+}
+
+.slider-buttons {
+   position: absolute;
+   bottom: 55px;
+   right: -50px;
+   height: 100px;
+   width: 50px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+}
+
+.slider-buttons__item {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 50%;
+   background-color: #353e4e;
+
+   &:hover {
+      background-color: #4b6fd7;
+      transition: .8s;
+      
+      &::after {
+         border-left-color: #4b6fd7;
+         transition: .8s;
+      }  
+   }
+
+   &::before {
+      content: "";
+      position: absolute;
+      border: 5px solid transparent;
+      width: 0px;
+      height: 0px;
+      border-left-color: #fff;
+      border-right-width: 0;
+   }
+
+   &::after {
+      content: "";
+      position: absolute;
+      border: 5px solid transparent;
+      width: 0px;
+      height: 0px;
+      border-left-color: #353e4e;
+      right: 24px;
+      border-right-width: 0;
+   }
+}
+
+.slider-buttons__item--slide--prev {
+   transform: rotate(180deg);
+}

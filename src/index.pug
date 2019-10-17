@@ -8,4 +8,218 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title Portfolio | main page
   body
-    
+    .wrapper
+      .maincontent
+        .section-bg
+          section.section.welcome
+            .container
+              header.welcome__header
+                .welcome__logo
+                  .welcome__logo-text Ба
+                .welcome__menu
+                  nav.menu
+                    - var menu = ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться']
+                    ul.menu__list
+                      each item in menu
+                        li.menu__item
+                          a(href="#").menu__link #{item}
+                .welcome__social 
+                    - var icons = ['insta', 'vk', 'github'] 
+                    ul.socials
+                      each item in icons
+                        li.socials__item
+                          a(href="#").socials__link
+                            +icon(`${item}`, 'socials__icon')
+              .welcome__content
+                .user-info
+                  h1.user-info__subtitle
+                    | Личный сайт 
+                    br
+                    | веб разработчика
+                  .user-info__title 
+                    | Бутрий  
+                    br
+                    | Алексей
+              .welcome__btn  
+                .scroll
+                  .scroll__text Скролл
+                  a(href="").scroll__down
+                    +icon('scroll', 'scroll__icon')
+          section.section.summary
+            .container.summary__container
+              .summary__left
+                .user
+                  .user__avatar
+                    +image('content/user.jpg', 'user__pic')
+                  ul.user__desk
+                    -
+                      var items = [
+                        ['Проживаю:', 'Кемерово'],
+                        ['Возраст:', '27 лет'],
+                        ['Родился:', '21 апреля 1992']
+                      ]
+                    each item in items
+                      li.user__deck-item
+                        .user__key #{item[0]}
+                        .user__value #{item[1]}
+              .summary__right
+                h4.summary__subtitle Привет, меня зовут
+                h2.summary__title Бутрий Алексей
+                .summary__text Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+                .summary__ps Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+          section.section.values
+            .container.values__container
+              .value__left
+
+              .value__right  
+                .values__info
+                  h2.values__title Чем я могу быть полезен вам 
+                  .values__desc
+                    p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+                ul.user-skills
+                  - 
+                    var skills = [
+                      ['Front-end',['HTML5', 'CSS3', 'Javascript', 'Jquery и Vue.js']],
+                      ['Workflow', ['GIT','Terminal', 'Gulp', 'Webpack']],
+                    ]
+                  each item in skills
+                    li.user-skills__item.skills-row
+                      h3.skills-row__title #{item[0]}
+                      ul.skills-row__list
+                        each skill in item[1]
+                          li.skills-row__item
+                            .skill
+                              svg(viewBox='0 0 100 100' preserveAspectRatio='none').skill__shape
+                                circle(r='42' cx='50' cy='50').skill__circle.skill__circle--position--under
+                                circle(r='42' cx='50' cy='50' stroke="url(#gr)").skill__circle.skill__circle--position--above
+                              .skill__title #{skill}
+          section.section.works
+            .container.works__container
+              h3.works__title Мои работы
+              .works__content
+                .works__left
+                  .slider
+                    .slider__preview
+                      ul.previews
+                        li.previews__item.previews__item--active
+                          +image('content/slider/slider_1.jpg', 'previews__pic')
+                        li.previews__item
+                          +image('content/slider/slider_2.jpg', 'previews__pic')
+                        li.previews__item
+                          +image('content/slider/slider_3.jpg', 'previews__pic')
+                        li.previews__item
+                          +image('content/slider/slider_4.jpg', 'previews__pic')
+                      ul.works__number
+                        li.works__number-item 1
+                        li.works__number-item.works__number-item--active 2
+                        li.works__number-item 3
+                        li.works__number-item 4
+                    .slider__buttons
+                      .slider-buttons
+                        button.slider-buttons__item.slider-buttons__item--slide--prev
+                        button.slider-buttons__item.slider-buttons__item--slide--next
+                .works__right
+                  .works__tags
+                    - var tags = ['HTML3', 'CSS3', 'javascript']
+                    ul.tags
+                      each tag in tags
+                        li.tags__item #{tag}
+                  .works__text
+                    h3.works__text-title Сайт школы образования
+                    .works__desc-text
+                      p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                    a.works__text-link(href="") Посмотреть сайт
+                      +icon('link', 'works__text__icon')
+          section.reviews    
+            .container.container__reviews
+              .reviews__content 
+                .reviews__aboutme
+                  h2.reviews__aboutme-title Что обо мне говорят
+                  .reviews__btn
+                    button.reviews__aboutme-btn.reviews__aboutme-btn--prev
+                    button.reviews__aboutme-btn.reviews__aboutme-btn--next
+                ul.reviews__list
+                  li.reviews__item
+                    +icon('quote', 'reviews__item-svg')
+                    .reviews__item-content
+                      .reviews__item-text
+                        p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                      .item-info
+                        +image('content/user.jpg', 'item-info__pic')
+                        .item-info__content
+                          .item-info__title
+                            h3 Ковальчук Дмитрий
+                          .item-info__subtitle 
+                            h4 Основатель Loftschool
+                  li.reviews__item
+                    +icon('quote', 'reviews__item-svg')
+                    .reviews__item-content
+                      .reviews__item-text
+                        p Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
+                      .item-info
+                        +image('content/user.jpg', 'item-info__pic')
+                        .item-info__content
+                          .item-info__title
+                            h3 Владимир Сабанцев
+                          .item-info__subtitle 
+                            h4 Преподаватель
+                .form
+                  h2.form-title Связаться со мной
+                  form.form__elem
+                    .form__content
+                      .form__row
+                        label.form__block(for="")
+                          +icon('user', 'form__block-icon')
+                          .form__block-content
+                            .form__block-title Введите ваше имя
+                            input.form__input(type="text", name="name", placeholder="Введите ваше имя")
+                        label.form__block(for="")
+                          +icon('envelope', 'form__block-icon')
+                          .form__block-content
+                            .form__block-title Введите ваш email
+                            input.form__input(type="text", name="name", placeholder="Введите ваш email")
+                      .form__row.form__row--textarea
+                        label.form__block(for="")
+                          +icon('message', 'form__block-icon form__block-icon--textarea')
+                          .form__block-content
+                            .form__block-title.form__block-title--textarea Сообщение к письму
+                            textarea.form__input.form__input--textarea(name="message", placeholder="Сообщение к письму")
+                      .form__button
+                        button.form__btn Отправить
+          footer.footer
+            .container.footer__container
+              .footer__info
+                h3.footer__date © 2019
+                .footer__desc
+                  .footer__desc-title 
+                    | Бутрий 
+                    br
+                    | Алексей
+                  p.footer__desc-text
+                    | Личный сайт 
+                    br
+                    | веб разработчика
+              .footer__content
+                .footer__menu
+                  nav.menu
+                      - var menu = ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться']
+                      ul.menu__list
+                        each item in menu
+                          li.menu__item
+                            a(href="#").menu__link #{item}
+                .footer__links
+                  .footer__socials
+                    .footer__social-text
+                      p Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+                    .social.footer__social
+                      - var icons = ['insta', 'vk', 'github'] 
+                      ul.socials
+                        each item in icons
+                          li.socials__item.social__item--footer
+                            a(href="#").socials__link
+                              +icon(`${item}`, 'socials__icon')
+                  .footer__quote
+                    .footer__quote-text
+                      p Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+                    h4.footer__quote-title Martin Golding
+
