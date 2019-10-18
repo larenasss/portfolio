@@ -10,7 +10,7 @@
    }
 
    @include phones {
-      height: 120vh;
+      height: 200vh;
    }
 }
 
@@ -21,6 +21,10 @@
 
    @include tablets {
       width: 90%;
+   }
+
+   @include phones {
+     justify-content: center;
    }
 }
 
@@ -34,15 +38,26 @@
 
    @include tablets {
       width: 36%;
-      bottom: -77px;
+      bottom: -73px;
       left: 30%;
       transform: rotate(-90deg);
-      min-width: 350px;
+      min-width: 330px;
    }
 
    @include phones {
-      width: 65%;
+      bottom: -49px;
+      width: 338px;
       left: 17%;
+   }
+
+   @include phonesX {
+      bottom: -26px;
+      left: 10%;
+   }
+
+   @include phonesSE {
+      bottom: -2px;
+      left: 5%;
    }
 }
 
@@ -57,6 +72,21 @@
 .values__left-pic {
    width: 100%;
    height: 100%;
+
+   @include phones {
+      width: 90%;
+      height: 90%;
+   }
+
+   @include phonesX {
+      width: 80%;
+      height: 80%;
+   }
+
+   @include phonesSE {
+      width: 70%;
+      height: 70%;
+   }
 }
 
 .values__info {
@@ -73,7 +103,7 @@
    @include phones {
       width: 100%;
       text-align: start;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
    }
 }
 

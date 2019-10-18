@@ -2,7 +2,7 @@
    height: 50vh;
 
    @include desktop {
-      height: 100vh;
+      height: 120vh;
       background: url('../images/content/summary-bg.png') center center / cover no-repeat;
    }
 }
@@ -57,6 +57,10 @@
    opacity: 0.5;
    font-weight: 400;
    margin-bottom: 100px;
+
+   @include phones {
+      margin-bottom: 30px;
+    }
 }
 
 .summary__ps {

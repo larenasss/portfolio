@@ -7,6 +7,14 @@
       height: 100vh;
    }
 
+   @include phones {
+      height: 150vh;
+   }
+
+   @include phonesSE {
+      height: 200vh;
+   }
+
    &::before{
       content: "";
       position: absolute;
@@ -24,7 +32,12 @@
 
    @include tablets {
       width: 90%;
-    }
+   }
+
+   @include phones {
+      justify-content: center;
+   }
+
  }
 
  .reviews__aboutme {
@@ -121,7 +134,10 @@
     @include phones {
       margin-bottom: 50px;
    }
-    
+
+    @include phonesSE {
+      margin-bottom: 100px;
+   } 
  }
 
  .reviews__item {
