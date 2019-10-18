@@ -1,9 +1,21 @@
 .menu__list {
    display: flex;
+
+   @include tablets {
+      flex-wrap: wrap;
+   }
 }
 
 .menu__item {
    margin-right: 60px;
+
+   @include tablets {
+      margin-bottom: 20px;
+
+      &:nth-child(n+4) {
+         margin-bottom: 0;
+      }
+   }
 
    &:last-child {
       margin-right: 0;

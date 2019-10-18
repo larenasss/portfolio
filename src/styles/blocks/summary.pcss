@@ -1,5 +1,10 @@
 .summary {
-   height: 32%;
+   height: 50vh;
+
+   @include desktop {
+      height: 100vh;
+      background: url('../images/content/summary-bg.png') center center / cover no-repeat;
+   }
 }
 
 .summary__container {
@@ -7,15 +12,33 @@
    flex-direction: inherit;
    justify-content: center;
    width: 70%;
+
+   @include desktop {
+      align-items: center;
+   }
+
+   @include phones {
+      width: 90%;
+      flex-direction: column;
+   }
 }
 
 .summary__left {
    width: 30%;
    margin-right: 100px;
+
+   @include phones {
+      margin-right: 0;
+      width: 100%;
+   }
 }
 
 .summary__right {
    width: 50%;
+
+   @include phones {
+      width: 100%;
+   }
 }
 
 .summary__subtitle {

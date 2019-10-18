@@ -1,14 +1,16 @@
-.scroll {
+.scroll__down {
    display: flex;
    align-items: center;
-}
-
-.scroll__text {
    font-size: 18px;
-}
+   text-decoration: none;
 
-.scroll__down {
-   height: 22px;
+   @include desktop {
+      opacity: .6;
+   }
+
+   @include phones {
+      display: none;
+   }
 }
 
 .scroll__icon {

@@ -1,23 +1,73 @@
+.works {
+   height: 100vh;
+}
+
 .works__container {
    padding: 8% 0 0 2%;
+
+   @include desktop {
+      padding: 12% 0 0 8%;
+   }
+
+   @include tablets {
+      padding: 15% 0 0 0;
+   }
+
+   @include tablets {
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+   }
 }
 
 .works__title {
    margin-bottom: 80px;
+
+   @include desktop {
+      margin-bottom: 60px;
+   }
 }
 
 .works__content {
    display: flex;
+   width: 100%;
+
+   @include tablets {
+      flex-direction: column;
+      align-items: center;
+   }
 }
 
 .works__left {
    margin-right: 160px;
    position: relative;
    z-index: 2;
+   width: 100%;
+
+   @include desktop {
+      margin-right: 110px;
+   }
+
+   @include tablets {
+      margin-right: 0;
+      margin-bottom: 50px;
+   }
 }
 
 .works__right {
    color: #353e4f;
+   width: 30%;
+
+   @include tablets {
+      width: 60%;
+      text-align: center;
+   }
+
+   @include phones {
+      width: 90%;
+      text-align: start;
+   }
 }
 
 .works__tags {
@@ -51,7 +101,16 @@
    color: #586ed3;
    position: relative;
    padding-left: 30px;
-   display: flex; 
+   display: flex;
+
+   @include tablets {
+      justify-content: center;
+   }
+
+   @include phones {
+      width: 90%;
+      justify-content: flex-start;
+   }
 
    &:hover {
       text-decoration: underline;
@@ -66,6 +125,14 @@
    width: 15px;
    height: 18px;
    fill: #586ed3;
+
+   @include tablets {
+      left: 30%;
+   }
+
+   @include phones {
+      left: 0;
+   }
 }
 
 .works__number {
@@ -76,6 +143,21 @@
    top: -45px;
    right: -170px;
    z-index: -1;
+
+   @include desktop {
+      font-size: 300px;
+      top: -106px;
+      right: -120px;
+   }
+
+   @include tablets {
+      top: -61px;
+      right: -110px;
+   }
+
+   @include phones {
+      display: none;
+   }
 }
 
 .works__number-item {

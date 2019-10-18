@@ -1,12 +1,34 @@
 .slider {
-   background: url('../images/content/works.jpg') center center / cover no-repeat;
-   width: 975px;
+   background-image: url('../images/content/works.jpg');
+   background-size: 100% 100%;
+   width: 100%;
+   max-width: 975px;
    height: 549px;
    position: relative;
+
+   @include desktop {
+      width: 635px;
+      height: 353px;
+   }
+
+   @include tablets {
+      width: 720px;
+      height: 400px;
+   }
+
+   @include phones {
+      width: 100%;
+      height: 186px;
+   }
+}
+
+.slider__preview {
+   display: none;
 }
 
 .slider-buttons {
    position: absolute;
+   background-color: #353e4e;
    bottom: 55px;
    right: -50px;
    height: 100px;
@@ -14,6 +36,15 @@
    display: flex;
    flex-direction: column;
    justify-content: space-around;
+
+   @include desktop {
+      bottom: 30px;
+   }
+
+   @include phones {
+      right: 0;
+      bottom: 0;
+   }
 }
 
 .slider-buttons__item {

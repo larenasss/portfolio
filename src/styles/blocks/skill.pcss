@@ -9,6 +9,11 @@
    height: 165px;
    display: inline-block;
    transform: rotate(-180deg);
+
+   @include tablets {
+      width: 150px;
+      height: 150px;
+   }
 }
 
 .skill__circle {
@@ -39,11 +44,23 @@
    margin-bottom: 30px;
 }
 
-.skills-row__item {
-   margin-right: 40px;
+.skills-row__list {
+   display: flex;
+   justify-content: space-between;
 
-   &:last-child {
-      margin-right: 0;
+   @include tablets {
+      flex-wrap: wrap;
+      justify-content: center;
+   }
+}
+
+.skills-row__item {
+   @include phones {
+      margin-right: 20px;
+
+      &:last-child {
+         margin-right: 0;
+      }
    }
 }
 
@@ -51,4 +68,8 @@
    font-size: 24px;
    font-weight: 700;
    margin-bottom: 30px;
+
+   @include phones {
+      font-size: 18px;
+   }
 }

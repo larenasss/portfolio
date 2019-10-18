@@ -23,7 +23,7 @@ html(lang="en")
                       each item in menu
                         li.menu__item
                           a(href="#").menu__link #{item}
-                .welcome__social 
+                .welcome__social
                     - var icons = ['insta', 'vk', 'github'] 
                     ul.socials
                       each item in icons
@@ -39,11 +39,10 @@ html(lang="en")
                   .user-info__title 
                     | Бутрий  
                     br
-                    | Алексей
+                    | Алексея
               .welcome__btn  
                 .scroll
-                  .scroll__text Скролл
-                  a(href="").scroll__down
+                  a(href="").scroll__down Скролл
                     +icon('scroll', 'scroll__icon')
           section.section.summary
             .container.summary__container
@@ -69,9 +68,9 @@ html(lang="en")
                 .summary__ps Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
           section.section.values
             .container.values__container
-              .value__left
-
-              .value__right  
+              .values__left
+                +image('content/skills-hand.png', 'values__left-pic')
+              .values__right  
                 .values__info
                   h2.values__title Чем я могу быть полезен вам 
                   .values__desc
@@ -139,7 +138,7 @@ html(lang="en")
                     button.reviews__aboutme-btn.reviews__aboutme-btn--prev
                     button.reviews__aboutme-btn.reviews__aboutme-btn--next
                 ul.reviews__list
-                  li.reviews__item
+                  li.reviews__item.reviews__item--active
                     +icon('quote', 'reviews__item-svg')
                     .reviews__item-content
                       .reviews__item-text
