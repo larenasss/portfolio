@@ -3,6 +3,7 @@
    position: absolute;
    right: 0;
    bottom: 55px;
+   width: 80%;
 
    @include desktop {
       bottom: 30px;
@@ -10,12 +11,13 @@
 }
 
 .previews__item {
-   &--active .previews__pic{
-      border: 2px solid #dc9322;
+   &.active,
+   &:hover {
+     outline: 3px solid #f29400;
    }
 }
 
-.previews__pic {
+.previews__item-pic {
    width: 100%;
    height: 100px;
 }

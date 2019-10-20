@@ -29,7 +29,7 @@
 
 .skill__circle--position--above {
    stroke: #d5821e;
-   stroke-dasharray: 251;
+   stroke-dasharray: 264;
    stroke-dashoffset: 150;
    stroke-width: 8px;
 }
@@ -55,21 +55,27 @@
 
 .skills-row__list {
    display: flex;
-   justify-content: space-between;
+   flex-wrap: wrap;
 
    @include tablets {
-      flex-wrap: wrap;
       justify-content: center;
    }
 }
 
 .skills-row__item {
+   margin-right: 20px;
+
+   &:last-child {
+      margin-right: 0;
+   }
+
    @include phones {
       margin-right: 20px;
 
-      &:last-child {
+      &:nth-child(even) {
          margin-right: 0;
       }
+   
    }
 }
 

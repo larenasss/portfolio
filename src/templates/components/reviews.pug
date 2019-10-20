@@ -1,0 +1,19 @@
+script(type="text/x-template")#reviews
+   .reviews__content 
+      .reviews__aboutme
+         h2.title.reviews__aboutme-title Что обо мне говорят
+         .reviews__btn
+            button.reviews__aboutme-btn.reviews__aboutme-btn--prev
+            button.reviews__aboutme-btn.reviews__aboutme-btn--next
+      swiper.reviews__list(:options="swiperOptions" ref="mySwiper")
+         swiper-slide.reviews__item(v-for="review in reviews" :key="review.id")
+            .reviews__item-content
+               .text.reviews__item-text
+                  p {{ review.text }}
+               .item-info
+                  img(:src="review['author-pic']").item-info__pic
+                  .item-info__content
+                     .item-info__title
+                        h3 {{review['author-name']}}
+                     .item-info__subtitle 
+                        h4 {{review['author-occ']}}
