@@ -1,9 +1,12 @@
 .section-bg {
-  background: url('../images/content/background.jpg') center center / cover no-repeat;
   height: 150vh;
 
   @include desktop {
     height: 200vh;
+  }
+
+  @include tablets {
+    background: url('../images/content/background.jpg') center center / cover no-repeat;
   }
 
   @include phonesSE {

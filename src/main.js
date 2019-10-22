@@ -7,3 +7,4 @@ if (process.env.NODE_ENV === "development") { // Если идет разраб�
 import "./scripts/skills";
 import "./scripts/works";
 import "./scripts/reviews";
+import "./scripts/parallax";
