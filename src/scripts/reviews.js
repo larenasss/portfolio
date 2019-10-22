@@ -18,8 +18,14 @@ new Vue({
                nextEl: '.reviews__aboutme-btn--next',
                prevEl: '.reviews__aboutme-btn--prev',
             },
-            slidesPerView:2,
-            slidesPerGroup:2
+            slidesPerView: 2,
+            slidesPerGroup: 2,
+            breakpoints: {
+               480: {
+                  slidesPerView: 1,
+                  slidesPerGroup: 1,
+               },
+            }
          }
       };
    },

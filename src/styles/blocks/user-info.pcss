@@ -1,9 +1,23 @@
 .user-info {
    display: flex;
    position: absolute;
-   top: 25%;
+   top: 27%;
    left: 50%;
    transform: translate(-50%);
+
+   &--nodisplay {
+      display: none;
+
+      @include tablets {
+         display: flex;
+      }
+
+   }
+
+   @include tablets {
+      position: inherit;
+      transform: inherit;
+   }
 
    @include phones {
       flex-direction: column;

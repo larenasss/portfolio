@@ -3,9 +3,18 @@
    background: url('../images/content/summary-bg.png') center center / cover no-repeat;
 
    @include desktop {
-      height: 120vh;
+      height: 100vh;
       background: url('../images/content/summary-bg.png') center center / cover no-repeat;
    }
+
+   @include tablets {
+      height: 100vh;
+      background: url('../images/content/summary-bg-tabl.png') center center / cover no-repeat;
+   }
+
+   @include phonesSE {
+      height: 150vh;
+    }
 }
 
 .summary__container {

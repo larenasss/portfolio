@@ -6,11 +6,17 @@
    &::before {
       content: "2";
       position: absolute;
-      top: -45px;
+      top: -50px;
       right: -160px;
       font-size: 400px;
       font-weight: 800;
       color: #e6e6e6;
+
+      @include tablets {
+         font-size: 350px;
+         top: -115px;
+         right: -115px;
+      }
 
       @include phones {
          display: none;
@@ -29,7 +35,12 @@
 
    @include phones {
       width: 100%;
-      height: 220px;
+      height: 280px;
+   }
+
+   @include phonesSE{
+      width: 100%;
+      height: 250px;
    }
 }
 
@@ -44,7 +55,7 @@
 .slider-buttons {
    position: absolute;
    background-color: #353e4e;
-   bottom: 55px;
+   bottom: 60px;
    right: -50px;
    height: 100px;
    width: 50px;
@@ -54,6 +65,10 @@
 
    @include desktop {
       bottom: 30px;
+   }
+
+   @include tablets {
+      bottom: 37px;
    }
 
    @include phones {

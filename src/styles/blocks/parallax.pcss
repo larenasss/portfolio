@@ -11,6 +11,10 @@
    top: 0;
    left: 0;
 
+   @include tablets {
+      display: none;
+   }
+
    &:nth-child(1) {
       .parallax__img {
          object-fit: cover;

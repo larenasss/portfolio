@@ -50,7 +50,19 @@ html(lang="en")
                         li.socials__item
                           a(href="#").socials__link
                             +icon(`${item}`, 'socials__icon')
+                .welcome__gamburger
+                  button.gamburger
+                    .gamburger__item
               .welcome__content
+                .user-info.user-info--nodisplay
+                  h1.user-info__subtitle
+                    | Личный сайт 
+                    br
+                    | веб разработчика
+                  .user-info__title 
+                    | Бутрий  
+                    br
+                    | Алексея
               .welcome__btn  
                 .scroll
                   a(href="").scroll__down Скролл
@@ -77,6 +89,23 @@ html(lang="en")
                 h2.summary__title Бутрий Алексей
                 .text.summary__text Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
                 .text.summary__ps Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+          section.fullscreen-menu
+            .container.fullscreen-menu__container
+              .fullscreen-menu__content
+                nav.fullscreen-menu__nav
+                  - var menu = ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться']
+                  ul.fullscreen-menu__list
+                    each item in menu
+                      li.fullscreen-menu__item
+                        a(href="#").fullscreen-menu__link #{item}
+                .fullscreen-menu__social
+                  - var icons = ['insta', 'vk', 'github'] 
+                  ul.socials
+                    each item in icons
+                      li.socials__item.socials__item
+                        a(href="#").socials__link
+                          +icon(`${item}`, 'socials__icon--fullscreen')
+                .fullscreen-menu__close
         section.values
             .container.values__container
               .values__left
