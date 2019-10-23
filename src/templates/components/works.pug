@@ -15,14 +15,14 @@ script(type="text/x-template")#slider-display
    .works__left
       .slider
          img(:src="currentWork.photo").slider__fullpic
-      .slider__preview
-         thumbs(
-            :works="works"
-            :currentWork="currentWork"
-         )
-         btns(
-            @slide="$emit('slide', $event)"
-         )
+         .slider__preview
+            thumbs(
+               :works="works"
+               :currentWork="currentWork"
+            )
+            btns(
+               @slide="$emit('slide', $event)"
+            )
             
 
 script(type="text/x-template")#slider-thumbs

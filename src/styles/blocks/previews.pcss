@@ -6,11 +6,7 @@
    width: 80%;
 
    @include desktop {
-      bottom: 30px;
-   }
-
-   @include tablets {
-      right: 95px;
+      bottom: 25px;
    }
 
    @include phones {
@@ -20,7 +16,7 @@
 
 .previews__item {
 
-   @include tablets {
+   @include desktop {
 
       &:nth-child(3) {
          display: none;
@@ -36,8 +32,4 @@
 .previews__item-pic {
    width: 100%;
    height: 100px;
-   
-   @include tablets {
-      height: 120px;
-   }
 }
