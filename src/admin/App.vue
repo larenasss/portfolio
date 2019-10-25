@@ -52,7 +52,7 @@
 
   .menu__list {
     display: flex;
-    padding: 0 55px;
+    padding: 0 25px;
   }
 
   .menu__item {
@@ -167,12 +167,13 @@
         .header__out
           a.header__out-link Выход
     .aboutme__menu
-      nav.menu
-        - var menu = ['Главная', 'Работы', 'Отзывы']
-          ul.menu__list
-            each item in menu
-              li.menu__item
-                a(href="#").menu__link #{item}
+      .container
+        nav.menu
+          - var menu = ['Главная', 'Работы', 'Отзывы']
+            ul.menu__list
+              each item in menu
+                li.menu__item
+                  a(href="#").menu__link #{item}
     .aboutme__content
       .container.aboutme__container
         .aboutme__info

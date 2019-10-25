@@ -30,8 +30,11 @@
 
 .user__deck-item {
    display: flex;
-   justify-content: space-between;
    margin-bottom: 20px;
+
+   @include phones {
+      justify-content: flex-start;
+   }
 
    &:last-child {
       margin-bottom: 0;
@@ -41,6 +44,10 @@
 .user__key {
    opacity: 0.15;
    margin-right: 10px;
+
+   @include phones {
+      width: 50%;
+   }
 }
 
 .user__value {

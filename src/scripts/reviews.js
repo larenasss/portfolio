@@ -17,6 +17,7 @@ new Vue({
             navigation: {
                nextEl: '.reviews__aboutme-btn--next',
                prevEl: '.reviews__aboutme-btn--prev',
+               disabledClass: 'notactive'
             },
             slidesPerView: 2,
             slidesPerGroup: 2,
