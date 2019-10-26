@@ -192,6 +192,14 @@
     }
   }
 
+  .aboutme__item-edit {
+    background: svg-load('pencil.svg', fill=#414c63, width=100%, height=100%);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 15px;
+    opacity: 0.5;
+  }
+
   .aboutme__item-top {
     position: relative;
     height: 25%;
@@ -270,7 +278,7 @@
       position: absolute;
       top: 3px;
       right: -105px;
-      background: svg-load('pencil.svg', fill=#414c63;, width=100%, height=100%);
+      background: svg-load('pencil.svg', fill=#414c63, width=100%, height=100%);
       background-repeat: no-repeat;
       width: 16px;
       height: 15px;
@@ -281,7 +289,7 @@
       position: absolute;
       top: 3px;
       right: -140px;
-      background: svg-load('trash.svg', fill=#414c63;, width=100%, height=100%);
+      background: svg-load('trash.svg', fill=#414c63, width=100%, height=100%);
       background-repeat: no-repeat;
       width: 13px;
       height: 15px;
@@ -291,8 +299,6 @@
   .works{
     color: #414c63;
     background-color: #f7f9fe;
-    height: 1257px;
-    
   }
 
   .works__content {
@@ -301,6 +307,7 @@
     height: 70%;
     padding: 3%;
     margin-bottom: 40px;
+    max-width: 1120px;
   }
 
   .works__info {
@@ -314,7 +321,7 @@
   }
 
   .works__left {
-    width: 40%;
+    width: 48%;
     height: 276px;
     border: 1px dashed #a1a1a1;
     background-color: #dee4ed;
@@ -327,7 +334,7 @@
     margin-bottom: 20px;
   }
 
-  .works__left-btn {
+  .works__button {
     width: 181px;
     height: 50px;
     border-radius: 25px;
@@ -341,9 +348,24 @@
     width: 50%;
   }
 
+  .works__right-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .works__right-link {
+    margin-right: 20px;
+  }
+
   .works__block {
     border-bottom: 1px solid black;
     margin-bottom: 20px;
+
+    &--textarea {
+      border-bottom: none;
+      width: 100%;
+    }
 
     &:last-child {
       margin-bottom: 0;
@@ -352,6 +374,13 @@
 
   .works__input {
     padding: 10px 0;
+
+    &--textarea {
+      width: 100%;
+      height: 100px;
+      resize: none;
+      padding: 10px; 
+    }
   }
 
   .works__item {
@@ -367,6 +396,7 @@
     height: 556px;
     background-color: #ffffff;
     background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
+    margin-right: 40px;
   }
 
   .works__add-btn {
@@ -400,6 +430,203 @@
     }
   }
 
+  .works__items {
+    display: flex;
+  }
+
+  .works__item {
+     width: 340px;
+    height: 556px;
+    background-color: #ffffff;
+  }
+
+  .preview {
+    background: url("../images/content/slider/slider_1.jpg")center center / cover no-repeat;
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 2%;
+  }
+
+  .preview__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 73px;
+    height: 31px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .desk {
+    padding: 40px 20px;
+    display: flex;
+    height: 70%;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .desk__work, .desk__desk {
+    margin-bottom: 30px;
+  }
+
+  .desk__btn {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .preview__edit,.preview__del {
+    width: 40%;
+  }
+
+  .preview__edit {
+    position: relative;
+
+    &:after {
+      content: "";
+      top: 4px;
+      right: 10px;
+      position: absolute;
+      background: svg-load('pencil.svg', fill=#414c63, width=100%, height=100%);
+      width: 17px;
+      height: 17px;
+    }
+  }
+
+  .preview__del {
+     position: relative;
+  }
+
+  .preview__del-close {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+  }
+
+  .preview__del-close:before,
+  .preview__del-close:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 18px;
+    height: 3px;
+    background-color: #bf2929;
+  }
+
+  .reviews {
+    height: 519px;
+    width: 100%;
+    max-width: 1120px;
+    background-color: #ffffff;
+    padding: 3%;
+    margin-bottom: 40px;
+  }
+
+  .reviews__title {
+    height: 10%;
+    width: 100%;
+    margin-bottom: 40px;
+    border-bottom: 1px solid black;
+  }
+
+  .reviews__content {
+    display: flex;
+    width: 100%;
+  }
+
+  .reviews__right {
+    width: 60%;
+  }
+
+  .user {
+    text-align: center;
+    margin-right: 40px;
+  }
+
+  .user__img {
+    width: 200px;
+    height: 200px;
+    background-color: #dee4ed;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 40px;
+    
+
+    &:before {
+      position: absolute;
+      content: "";
+      background: svg-load('user.svg', fill=#ffffff, width=100%, height=100%);
+      background-repeat: no-repeat;
+      background-position:center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 85px;
+      height: 113px;
+    }
+  }
+
+  .reviews__desk-title--textarea {
+    margin-bottom: 20px;
+  }
+
+  .reviews__desk-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .reviews__desk-content {
+    border-bottom: 1px solid black;
+    width: 48%;
+    margin-bottom: 20px;
+
+    &--textarea {
+      width: 100%;
+      border-bottom: none;
+    }
+  }
+
+  .reviews__input {
+    padding: 20px 0;
+
+    &--textarea {
+      width: 100%;
+      height: 100px;
+      resize: none;
+      padding: 10px; 
+    }
+  }
+
+  .reviews__item {
+    width: 340px;
+    height: 556px;
+    background-color: #ffffff;
+    padding: 3%;
+  }
+
+  .reviews__user {
+    display: flex;
+    height: 13%;
+    border-bottom: 1px solid black;
+    margin-bottom: 40px;
+  }
+
+  .reviews__user-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
 
 </style>
 <template lang="pug">
@@ -447,8 +674,7 @@
                 label.aboutme__block(for="")
                   input.aboutme__input(type="text", name="name", placeholder="Название новой группы")
                 .aboutme__item-btn
-                  .aboutme__item-okey.icon__okey
-                  .aboutme__item-close.icon__close
+                  .aboutme__item-edit
               ul.aboutme__skills
                 -
                   var items = [
@@ -474,46 +700,89 @@
           .works__info
             .works__left
               .works__left-content Перетащите или загрузите для загрузки изображения
-              button.works__left-btn Зашрузить
+              button.works__button Загрузить
             .works__right
-              .works__right-title Название
-              label.works__block(for="")
-                input.works__input(type="text", name="name", placeholder="Новый навык")
-              .works__right-title Название
-              label.works__block(for="")
-                input.works__input(type="text", name="name", placeholder="Новый навык")
-              .works__right-title Название
-              label.works__block(for="")
-                 textarea.works__input.works__input--textarea(name="message", placeholder="Сообщение к письму")
-              .works__right-title Название
-              label.works__block(for="")
-                input.works__input(type="text", name="name", placeholder="Новый навык")
+              .works__block
+                .works__right-title Название
+                label.works__label(for="")
+                  input.works__input(type="text", name="name", placeholder="Новый навык")
+              .works__block
+                .works__right-title Название
+                label.works__label(for="")
+                  input.works__input(type="text", name="name", placeholder="Новый навык")
+              .works__block.works__block--textarea
+                .works__right-title Название
+                label.works__label(for="")
+                  textarea.works__input.works__input--textarea(type="text", name="name", placeholder="Новый навык")
+              .works__block
+                .works__right-title Название
+                label.works__label(for="")
+                  input.works__input(type="text", name="name", placeholder="Новый навык")
               .works__right-btn
                 a.works__right-link Отмена
-                button.works__right-button Сохранить
-        .works__item
+                button.works__button Загрузить
+        .works__items
           .works__add
             .works__add-btn
             .works__add-desk Добавить работу
-      section.reviews
-        .reviews__title Добавить Отзывы
-        .reviews__content
-          .user
-            .user__img
-            a.user__link Добавить
-          .reviews__right
-            .reviews__desk
-              .reviews__desk-info
-                .works__right-title Название
-                label.works__block(for="")
-                input.works__input(type="text", name="name", placeholder="Новый навык")
-                .works__right-title Название
-                label.works__block(for="")
-                input.works__input(type="text", name="name", placeholder="Новый навык")
-              .works__right-title Название
-              label.works__block(for="")
-                 textarea.works__input.works__input--textarea(name="message", placeholder="Сообщение к письму")
-              
+          .works__item
+            ul.preview
+              li.preview__item HTML5
+              li.preview__item HTML5
+              li.preview__item HTML5
+            .desk
+              .desk__content
+                .desk__work Новая работа
+                .desk__desk Описание работы
+                a.desk__link http://google.com
+              .desk__btn
+                .preview__edit Править
+                .preview__del Удалить
+                  .preview__del-close.icon__close
+        section.reviews
+          .container.aboutme__container
+            .reviews__title Добавить Отзывы
+            .reviews__content
+              .user
+                .user__img
+                a.user__link Добавить фото
+              .reviews__right
+                .reviews__desk
+                  .reviews__desk-info
+                    .reviews__desk-content
+                      .reviews__desk-title Название
+                      label.reviews__block(for="")
+                        input.reviews__input(type="text", name="name", placeholder="Новый навык")
+                    .reviews__desk-content
+                      .reviews__desk-title Название
+                      label.reviews__block(for="")
+                        input.reviews__input(type="text", name="name", placeholder="Новый навык")
+                  .reviews__desk-content.reviews__desk-content--textarea
+                    .reviews__desk-title.reviews__desk-title--textarea Название
+                    label.reviews__block(for="")
+                      textarea.reviews__input.reviews__input--textarea(name="message", placeholder="Сообщение к письму")
+                  .works__right-btn
+                    a.works__right-link Отмена
+                    button.works__button Сохранить
+        .works__items
+          .works__add
+            .works__add-btn
+            .works__add-desk Добавить отзыв
+          .reviews__item
+            .reviews__user
+              img(src="../images/content/user.jpg").reviews__user-pic
+              .reviews__user-desk
+                .reviews__user-name Владимир Сабанцев
+                .reviews__user-pos Основатель Лофтскул
+            .reviews__text
+              p Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
+            .desk__btn
+                .preview__edit Править
+                .preview__del Удалить
+                  .preview__del-close.icon__close
+
+                  
+                
                 
               
           
