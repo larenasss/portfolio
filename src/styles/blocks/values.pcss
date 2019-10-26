@@ -3,6 +3,10 @@
    display: flex;
    justify-content: center;
    position: relative;
+
+   @include tablets {
+      padding: 10% 0 55% 0;
+   }
 }
 
 .values__container {
@@ -11,15 +15,6 @@
 
    @include tablets {
       padding-left: 0;
-   }
-
-   @include phones {
-     padding-top: 30%;
-   }
-
-   @include phonesX {
-     justify-content: center;
-     padding-top: 5%;
    }
 }
 
