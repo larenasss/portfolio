@@ -3,14 +3,22 @@
    display: flex;
    justify-content: center;
    position: relative;
-   height: 100vh;
+   height: 100%;
 
    @include tablets {
       justify-content: center;
    }
 
    @include phones {
-      height: 200vh;
+      height: 200%;
+   }
+
+   @include phonesX {
+      height: 150%;
+    }
+
+   @include phonesSE {
+      height: 200%;
    }
 }
 
@@ -57,7 +65,7 @@
 
    @include phonesX {
       bottom: -26px;
-      left: 10%;
+      left: 7%;
    }
 
    @include phonesSE {

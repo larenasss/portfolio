@@ -1,18 +1,18 @@
 .reviews {
    background: url('../images/content/reviews.jpg') center center / cover no-repeat;
-   height: 150vh;
+   height: 150%;
    position: relative;
 
-   @include tablets {
-      height: 100vh;
+   @include phones {
+      height: 200%;
    }
 
-   @include phones {
-      height: 150vh;
-   }
+   @include phonesX {
+      height: 150%;
+    }
 
    @include phonesSE {
-      height: 250vh;
+      height: 200%;
    }
 
    &::before{

@@ -1,16 +1,8 @@
 .works {
-   height: 100vh;
+   height: 100%;
 
    @include phones {
-      height: 150vh;
-   }
-
-   @include phonesX {
-      height: 100vh;
-   }
-
-   @include phonesSE {
-      height: 200vh;
+      height: 150%;
    }
 }
 
@@ -46,9 +38,10 @@
 
 .works__content {
    display: flex;
-   width: 100%;
+   width: 95%;
 
    @include tablets {
+      width: 100%;
       flex-direction: column;
       align-items: center;
    }

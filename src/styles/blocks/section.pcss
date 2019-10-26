@@ -1,12 +1,20 @@
 .section-bg {
-  height: 150vh;
+  height: 150%;
 
   @include tablets {
-    height: 200vh;
+    height: 200%;
     background: url('../images/content/background.png') top center no-repeat;
   }
 
+  @include phones {
+    height: 250%;
+  }
+
+  @include phonesX {
+    height: 200%;
+  }
+
   @include phonesSE {
-    height: 300vh;
+    height: 250%;
   }
 }

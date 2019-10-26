@@ -1,9 +1,9 @@
 .welcome {
-   height: 100vh;
+   height: 70%;
    position: relative;
 
-  @include phonesSE {
-   height: 150vh;
+  @include tablets {
+   height: 50%;
  }
 }
 
@@ -50,5 +50,9 @@
    align-items: center;
    justify-content: center;
    z-index: 2;
+
+   @include tablets {
+      display: none;
+   }
 }
 
