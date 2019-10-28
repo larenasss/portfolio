@@ -4,89 +4,22 @@
   @import "../styles/layout/base.pcss";
   @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800");
 
+  // Общие стили
+
+  section {
+    width: 100%;
+    color: #414c63;
+    font-weight: 600;
+  }
+
   .container {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .aboutme__container {
-    align-items: flex-start;
     flex-direction: column;
-  }
-  
-  .header {
-    height: 80px;
-    background-color: #3e3e59;
-    padding: 5px 0;
+    max-width: 1096px;
   }
 
-  .header__user {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-  }
+  // Иконки
 
-  .header__user-pic {
-    width: 44px;
-    height: 45px;
-    border-radius: 50%;
-    margin-right: 20px;
-  }
-
-  .header__out {
-    flex: 1;
-    text-align: right;
-  }
-
-  .menu {
-    color: #414c63;
-    height: 77px;
-    display: flex;
-  }
-
-  
-  .nav {
-    align-items: center;
-    display: flex;
-  }
-
-  .nav__list {
-    display: flex;
-    padding: 0 25px;
-  }
-
-  .nav__item {
-    margin-right: 30px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
-  .nav__link {
-    text-decoration: none;
-  }
-
-  .aboutme__content {
-    color: #414c63;
-    background-color: #f7f9fe;
-  }
-
-  .aboutme__info {
-    padding: 30px 0;
-    display: flex;
-    margin-bottom: 30px;
-  }
-
-  .aboutme__info-title {
-    margin-right: 50px;
-  }
-
-  .aboutme__btn {
-    margin-right: 30px;
-  }
-
-  .icon__btn {
+  .icon-add {
     position: relative;
     border-radius: 50%;
     width: 20px;
@@ -162,32 +95,127 @@
    transform: rotate(-45deg);
   }
 
-  .aboutme__info-btn {
+  // Хедер
+
+  .header__container {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .header {
+    height: 80px;
+    background-color: #3e3e59;
+    padding: 5px 0;
+  }
+
+  .header__user {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .header__user-pic {
+    width: 44px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+
+  .header__user-name {
+    font-size: 18px;
+  }
+
+  .header__desc {
+    font-size: 14px;
+    opacity: 0.5;
+  }
+
+  .header__out {
+    flex: 1;
+    text-align: right;
+    opacity: .5;
+  }
+
+  .header__out-link {
+    text-decoration: underline;
+  }
+
+  // Меню
+
+  .nav {
+    align-items: center;
+    display: flex;
+    color: #414c63;
+    height: 77px;
+  }
+
+  .nav__list {
+    display: flex;
+    padding: 0 25px;
+  }
+
+  .nav__item {
+    margin-right: 30px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .nav__link {
+    text-decoration: none;
+  }
+
+  // Обо мне
+
+  .aboutme {
+    background-color: #f7f9fe;
+    padding-bottom: 40px;
+  }
+
+  .aboutme__info {
+    padding: 30px 0;
+    display: flex;
+    margin-bottom: 30px;
+  }
+
+  .aboutme__info-title {
+    margin-right: 50px;
+    font-size: 21px;
+    font-weight: 700;
+  }
+
+  .aboutme__btn {
     display: flex;
     align-items: center;
   }
 
+  .aboutme__btn-link {
+    color: #383bcf;
+    font-weight: 700;
+  }
+
+  .aboutme__icon-add {
+    margin-right: 10px;
+  }
+
   .aboutme__list {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .aboutme__item {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px 30px 2%;
+    margin-right: 50px;
+    padding: 1% 3% 2%;
     width: 534px;
     height: 387px;
     box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
-    margin-right: 50px;
 
-    &:nth-child(1) {
-      margin-bottom: 50px;
-    }
-
-    &:nth-child(2) {
+    &:last-child {
       margin-right: 0;
     }
   }
@@ -200,9 +228,9 @@
     opacity: 0.5;
   }
 
-  .aboutme__item-top {
+  .aboutme__desk{
     position: relative;
-    height: 25%;
+    height: 20%;
     width: 100%;
     border-bottom: 1px solid #bbbfc7;
   }
@@ -215,19 +243,21 @@
     right: 0;
   }
 
-  .aboutme__block {
-    margin-right: 10px;
-  }
-
   .aboutme__block-interest {
     margin-right: 40px;
   }
 
   .aboutme__input {
-    padding: 20px 0;
+    padding: 15px 0;
     margin-left: 5px;
     width: 250px;
+    font-size: 18px;
     border-bottom: 1px solid #000000;
+
+    &::placeholder {
+      font-size: 18px;
+      opacity: 0.51;
+    }
   }
 
   .aboutme__item-bottom {
@@ -238,8 +268,9 @@
   }
 
   .aboutme__input-skill {
-    padding: 15px 0;
+    padding: 15px 5px 15px 15px;
     width: 200px;
+    margin-right: 20px;
   }
 
   .aboutme__input-interest {
@@ -275,6 +306,7 @@
 
     &::after {
       content: "";
+      opacity: .5;
       position: absolute;
       top: 3px;
       right: -105px;
@@ -286,6 +318,7 @@
 
     &::before {
       content: "";
+      opacity: .5;
       position: absolute;
       top: 3px;
       right: -140px;
@@ -295,6 +328,8 @@
       height: 15px;
     }
   }
+
+  // Работы
 
   .works{
     color: #414c63;
@@ -315,9 +350,11 @@
   }
 
   .works__info-title {
-    height: 5%;
-    margin-bottom: 20px;
+    padding-bottom: 3%;
+    margin-bottom: 40px;
     border-bottom: 1px solid black;
+    font-size: 18px;
+    font-weight: 700;
   }
 
   .works__left {
@@ -325,7 +362,7 @@
     height: 276px;
     border: 1px dashed #a1a1a1;
     background-color: #dee4ed;
-    padding: 5% 10%;
+    padding: 8% 12% 5%;
     text-align: center;
     margin-right: 20px;
   }
@@ -355,16 +392,17 @@
   }
 
   .works__right-link {
-    margin-right: 20px;
+    margin-right: 40px;
   }
 
   .works__block {
     border-bottom: 1px solid black;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 
     &--textarea {
       border-bottom: none;
       width: 100%;
+      margin-bottom: 10px;
     }
 
     &:last-child {
@@ -372,15 +410,57 @@
     }
   }
 
+  .works__block-title {
+    opacity: .5;
+
+    &--textarea {
+      margin-bottom: 10px;
+    } 
+  }
+
   .works__input {
     padding: 10px 0;
+    font-size: 18px;
 
     &--textarea {
       width: 100%;
-      height: 100px;
+      height: 150px;
       resize: none;
       padding: 10px; 
     }
+  }
+
+  .works__right-tags {
+    margin-bottom: 40px;
+  }
+
+  .tags {
+    display: flex;
+  }
+
+  .tags__item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    padding: 1% 2%;
+    background-color: #f4f4f4;
+    border-radius: 15px;
+    opacity: 0.7;
+  }
+
+  .tags-icon__close {
+    height: 11px;
+    margin-left: 5px;
+  }
+
+  .tags-icon__close:before,
+  .tags-icon__close:after {
+    content: "";
+    position: absolute;
+    top: 40%;
+    width: 12px;
+    height: 2px;
+    background-color: #414c63;
   }
 
   .works__item {
@@ -630,71 +710,72 @@
 
 </style>
 <template lang="pug">
-  section.aboutme
-    .header
-      .container
+  .maincontent
+    header.header
+      .container.header__container
         .header__user
           img(src="../images/content/user.jpg").header__user-pic
           .header__user-name Бутрий Алексей
         .header__desc Панель администрирования
         .header__out
-          a.header__out-link Выход
-    .aboutme__menu.menu
+          a.header__out-link Выйти
+    .menu
       .container
         nav.nav
-          - var menu = ['Главная', 'Работы', 'Отзывы']
+          - var menu = ['Обо мне', 'Работы', 'Отзывы']
             ul.nav__list
               each item in menu
                 li.nav__item
                   a(href="#").nav__link #{item}
-    .aboutme__content
-      .container.aboutme__container
-        .aboutme__info
-          .aboutme__info-title Блок << Обо мне >>
-          .aboutme__info-btn
-            button.aboutme__btn.icon__btn
-            a.aboutme__btn-link Добавить группу
-        .aboutme__elements
-          ul.aboutme__list
-            li.aboutme__item
-              .aboutme__item-top
-                label.aboutme__block(for="")
-                  input.aboutme__input(type="text", name="name", placeholder="Название новой группы")
-                .aboutme__item-btn
-                  .aboutme__item-okey.icon__okey
-                  .aboutme__item-close.icon__close
-              .aboutme__item-bottom
-                label.aboutme__block(for="")
-                  input.aboutme__input.aboutme__input-skill(type="text", name="name", placeholder="Новый навык")
-                label.aboutme__block.aboutme__block-interest(for="")
-                  input.aboutme__input.aboutme__input-interest(type="text", name="name", placeholder="100    %")
-                .aboutme__item-icon.icon__btn
-            li.aboutme__item
-              .aboutme__item-top
-                label.aboutme__block(for="")
-                  input.aboutme__input(type="text", name="name", placeholder="Название новой группы")
-                .aboutme__item-btn
-                  .aboutme__item-edit
-              ul.aboutme__skills
-                -
-                  var items = [
-                    ['Git', '100   %'],
-                    ['Terminal', '90   %'],
-                    ['Gulp', '80    %'],
-                    ['Webpack', '70   %'],
-                  ]
-                each item in items
-                  li.aboutme__skills-item
-                    .aboutme__skills-key #{item[0]}
-                    .aboutme__skills-value #{item[1]}
-              .aboutme__item-bottom
-                label.aboutme__block(for="")
-                  input.aboutme__input.aboutme__input-skill(type="text", name="name", placeholder="Новый навык")
-                label.aboutme__block.aboutme__block-interest(for="")
-                  input.aboutme__input.aboutme__input-interest(type="text", name="name", placeholder="100    %")
-                .aboutme__item-icon.icon__btn
+    section.aboutme
+      .container
+        .aboutme__content
+          .aboutme__info
+            .aboutme__info-title Блок "Обо мне"
+            .aboutme__btn
+              button.icon-add.aboutme__icon-add
+              a.aboutme__btn-link Добавить группу
+          .aboutme__elements
+            ul.aboutme__list
+              li.aboutme__item
+                .aboutme__desk
+                  label.aboutme__block(for="")
+                    input.aboutme__input(type="text", name="name", placeholder="Название новой группы")
+                  .aboutme__item-btn
+                    .aboutme__item-okey.icon__okey
+                    .aboutme__item-close.icon__close
+                .aboutme__item-bottom
+                  label.aboutme__block(for="")
+                    input.aboutme__input.aboutme__input-skill(type="text", name="name", placeholder="Новый навык")
+                  label.aboutme__block.aboutme__block-interest(for="")
+                    input.aboutme__input.aboutme__input-interest(type="text", name="name", placeholder="100 %")
+                  .aboutme__item-icon.icon-add
+              li.aboutme__item
+                .aboutme__desk
+                  label.aboutme__block(for="")
+                    input.aboutme__input(type="text", name="name", placeholder="Название новой группы")
+                  .aboutme__item-btn
+                    .aboutme__item-edit
+                ul.aboutme__skills
+                  -
+                    var items = [
+                      ['Git', '100  %'],
+                      ['Terminal', '90  %'],
+                      ['Gulp', '80  %'],
+                      ['Webpack', '70  %'],
+                    ]
+                  each item in items
+                    li.aboutme__skills-item
+                      .aboutme__skills-key #{item[0]}
+                      .aboutme__skills-value #{item[1]}
+                .aboutme__item-bottom
+                  label.aboutme__block(for="")
+                    input.aboutme__input.aboutme__input-skill(type="text", name="name", placeholder="Новый навык")
+                  label.aboutme__block.aboutme__block-interest(for="")
+                    input.aboutme__input.aboutme__input-interest(type="text", name="name", placeholder="100 %")
+                  .aboutme__item-icon.icon-add
     section.works
-      .container.aboutme__container
+      .container
         .works__content
           .works__info-title Редактирование работы
           .works__info
@@ -703,21 +784,27 @@
               button.works__button Загрузить
             .works__right
               .works__block
-                .works__right-title Название
+                .works__block-title Название
                 label.works__label(for="")
                   input.works__input(type="text", name="name", placeholder="Новый навык")
               .works__block
-                .works__right-title Название
+                .works__block-title Ссылка
                 label.works__label(for="")
                   input.works__input(type="text", name="name", placeholder="Новый навык")
               .works__block.works__block--textarea
-                .works__right-title Название
+                .works__block-title.works__block-title--textarea Описание
                 label.works__label(for="")
                   textarea.works__input.works__input--textarea(type="text", name="name", placeholder="Новый навык")
               .works__block
-                .works__right-title Название
+                .works__block-title Добавление тэга
                 label.works__label(for="")
                   input.works__input(type="text", name="name", placeholder="Новый навык")
+              .works__right-tags
+                - var tags = ['HTML5', 'CSS3', 'JS']
+                  ul.tags
+                    each item in tags
+                      li.tags__item #{item}
+                        .tags-icon__close.icon__close
               .works__right-btn
                 a.works__right-link Отмена
                 button.works__button Загрузить
@@ -739,47 +826,47 @@
                 .preview__edit Править
                 .preview__del Удалить
                   .preview__del-close.icon__close
-        section.reviews
-          .container.aboutme__container
-            .reviews__title Добавить Отзывы
-            .reviews__content
-              .user
-                .user__img
-                a.user__link Добавить фото
-              .reviews__right
-                .reviews__desk
-                  .reviews__desk-info
-                    .reviews__desk-content
-                      .reviews__desk-title Название
-                      label.reviews__block(for="")
-                        input.reviews__input(type="text", name="name", placeholder="Новый навык")
-                    .reviews__desk-content
-                      .reviews__desk-title Название
-                      label.reviews__block(for="")
-                        input.reviews__input(type="text", name="name", placeholder="Новый навык")
-                  .reviews__desk-content.reviews__desk-content--textarea
-                    .reviews__desk-title.reviews__desk-title--textarea Название
-                    label.reviews__block(for="")
-                      textarea.reviews__input.reviews__input--textarea(name="message", placeholder="Сообщение к письму")
-                  .works__right-btn
-                    a.works__right-link Отмена
-                    button.works__button Сохранить
-        .works__items
-          .works__add
-            .works__add-btn
-            .works__add-desk Добавить отзыв
-          .reviews__item
-            .reviews__user
-              img(src="../images/content/user.jpg").reviews__user-pic
-              .reviews__user-desk
-                .reviews__user-name Владимир Сабанцев
-                .reviews__user-pos Основатель Лофтскул
-            .reviews__text
-              p Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
-            .desk__btn
-                .preview__edit Править
-                .preview__del Удалить
-                  .preview__del-close.icon__close
+    section.reviews
+      .container.aboutme__container
+        .reviews__title Добавить Отзывы
+        .reviews__content
+          .user
+            .user__img
+            a.user__link Добавить фото
+          .reviews__right
+            .reviews__desk
+              .reviews__desk-info
+                .reviews__desk-content
+                  .reviews__desk-title Название
+                  label.reviews__block(for="")
+                    input.reviews__input(type="text", name="name", placeholder="Новый навык")
+                .reviews__desk-content
+                  .reviews__desk-title Название
+                  label.reviews__block(for="")
+                    input.reviews__input(type="text", name="name", placeholder="Новый навык")
+              .reviews__desk-content.reviews__desk-content--textarea
+                .reviews__desk-title.reviews__desk-title--textarea Название
+                label.reviews__block(for="")
+                  textarea.reviews__input.reviews__input--textarea(name="message", placeholder="Сообщение к письму")
+              .works__right-btn
+                a.works__right-link Отмена
+                button.works__button Сохранить
+      .works__items
+        .works__add
+          .works__add-btn
+          .works__add-desk Добавить отзыв
+        .reviews__item
+          .reviews__user
+            img(src="../images/content/user.jpg").reviews__user-pic
+            .reviews__user-desk
+              .reviews__user-name Владимир Сабанцев
+              .reviews__user-pos Основатель Лофтскул
+          .reviews__text
+            p Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
+          .desk__btn
+              .preview__edit Править
+              .preview__del Удалить
+                .preview__del-close.icon__close
 
                   
                 
