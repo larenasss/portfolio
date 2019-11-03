@@ -32,16 +32,25 @@
    display: flex;
    margin-bottom: 20px;
 
+   @include phones {
+      justify-content: flex-start;
+   }
+
    &:last-child {
       margin-bottom: 0;
    }
 }
 
 .user__key {
-   width: 50%;
    opacity: 0.15;
+   margin-right: 10px;
+
+   @include phones {
+      width: 50%;
+   }
 }
 
 .user__value {
    font-weight: 600;
+   white-space: nowrap;
 }

@@ -1,25 +1,27 @@
 .slider {
    width: 100%;
-   height: 550px;
+   max-width: 975px;
+   height: 100%;
    position: relative;
    
    &::before {
       content: "2";
       position: absolute;
-      top: -44px;
+      bottom: 25px;
       right: -160px;
       font-size: 400px;
       font-weight: 800;
       color: #e6e6e6;
+      z-index: -1;
 
       @include desktop {
          font-size: 300px;
-         top: -107px;
+         bottom: 28px;
          right: -100px;
       }
 
       @include tablets {
-         top: -60px;
+         bottom: 30px;
          right: -100px;
       }
 
@@ -27,32 +29,6 @@
          display: none;
       }
    }
-
-   @include desktop {
-      height: 353px;
-   }
-
-   @include tablets {
-      height: 400px;
-      width: 90%;
-   }
-
-   @include phones {
-      height: 280px;
-      width: 100%;
-   }
-
-   @include phonesSE{
-      height: 250px;
-   }
-}
-
-.slider__fullpic {
-   position: absolute;
-   top: 0;
-   right: 0;
-   width: 100%;
-   height: 100%; 
 }
 
 .slider-buttons {
@@ -67,7 +43,7 @@
    justify-content: space-around;
 
    @include desktop {
-      bottom: 31px;
+      bottom: 25px;
       right: -50px;
    }
 
@@ -75,6 +51,14 @@
       right: 0;
       bottom: 0;
    }
+}
+
+.slider__fullpic {
+   position: absolute;
+   top: 0;
+   right: 0;
+   width: 100%;
+   height: 100%; 
 }
 
 .slider-buttons__item {

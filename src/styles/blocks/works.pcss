@@ -1,33 +1,16 @@
-.works {
-   height: 100vh;
-
-   @include phones {
-      height: 150vh;
-   }
-
-   @include phonesX {
-      height: 100vh;
-   }
-
-   @include phonesSE {
-      height: 200vh;
-   }
-}
-
 .works__container {
-   padding: 8% 0 0 2%;
+   padding: 0 0 0 2%;
 
    @include desktop {
-      padding: 12% 0 0 8%;
+      padding: 0 0 0 8%;
    }
 
    @include tablets {
-      padding: 15% 0 0 0;
+      padding: 0;
       width: 95%;
    }
 
    @include phones {
-      padding: 15% 0 0 0;
       width: 100%;
    }
 }
@@ -46,7 +29,6 @@
 
 .works__content {
    display: flex;
-   width: 100%;
 
    @include tablets {
       flex-direction: column;
@@ -56,23 +38,31 @@
 
 .works__left {
    margin-right: 160px;
-   position: relative;
-   z-index: 2;
+   height: 549px;
    width: 100%;
+   align-self: flex-start;
 
    @include desktop {
       margin-right: 95px;
+      height: 353px;
    }
 
    @include tablets {
       margin-right: 0;
       margin-bottom: 50px;
+      width: 80%;
+   }
+
+   @include phones {
+      margin-right: 0;
+      margin-bottom: 50px;
+      width: 100%;
    }
 }
 
 .works__right {
    color: #353e4f;
-   width: 30%;
+   width: 20%;
 
    @include desktop {
       width: 40%;
@@ -118,16 +108,9 @@
    font-weight: 700;
    color: #586ed3;
    position: relative;
-   padding-left: 30px;
-   display: flex;
-
-   @include tablets {
-      justify-content: center;
-   }
-
+   
    @include phones {
-      width: 90%;
-      justify-content: flex-start;
+      margin-left: 30px;
    }
 
    &:hover {
@@ -138,17 +121,9 @@
 
 .works__text__icon {
    position: absolute;
-   left: 0;
+   left: -30px;
    top: 10%;
    width: 15px;
    height: 18px;
    fill: #586ed3;
-
-   @include tablets {
-      left: 30%;
-   }
-
-   @include phones {
-      left: 0;
-   }
 }
