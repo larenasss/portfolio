@@ -50,9 +50,7 @@ html(lang="en")
                         li.socials__item
                           a(href="#").socials__link
                             +icon(`${item}`, 'socials__icon')
-                .welcome__gamburger
-                  button.gamburger
-                    .gamburger__item
+                #fullscreen-menu-component
               .welcome__content
                 .user-info.user-info--nodisplay
                   h1.user-info__subtitle
@@ -89,7 +87,6 @@ html(lang="en")
                 h2.summary__title Бутрий Алексей
                 .text.summary__text Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
                 .text.summary__ps Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-          #fullscreen-menu-component
         section.values
             .container.values__container
               .values__left
@@ -113,24 +110,31 @@ html(lang="en")
                 form.form__elem
                   .form__content
                     .form__row
-                      label.form__block(for="")
+                      label.form__block(for="",id="formBlockName")
                         +icon('user', 'form__block-icon')
                         .form__block-content
                           .form__block-title Введите ваше имя
-                          input.form__input(type="text", name="name", placeholder="Введите ваше имя")
-                      label.form__block(for="")
+                          input.form__input(type="text", name="name", id="name", placeholder="Введите ваше имя", required)
+                        .error Какая то ошибка
+                      label.form__block(for="",id="formBlockEmail")
                         +icon('envelope', 'form__block-icon')
                         .form__block-content
                           .form__block-title Введите ваш email
-                          input.form__input(type="text", name="name", placeholder="Введите ваш email")
+                          input.form__input(type="email", name="email", id="email" placeholder="Введите ваш email", required)
+                        .error Какая то ошибка
                     .form__row.form__row--textarea
                       label.form__block(for="")
                         +icon('message', 'form__block-icon form__block-icon--textarea')
                         .form__block-content
                           .form__block-title.form__block-title--textarea Сообщение к письму
-                          textarea.form__input.form__input--textarea(name="message", placeholder="Сообщение к письму")
+                          textarea.form__input.form__input--textarea(type="text", name="comment", placeholder="Сообщение к письму", required)
+                        .error Какая то ошибка
                     .form__button
-                      button.form__btn Отправить
+                      button(type="submit").form__btn Отправить
+                .overley
+                  .overley__content
+                    .overley__text Письмо отправленно
+                    button.overley__btn Закрыть
         footer.footer
             .container.footer__container
               .footer__info
