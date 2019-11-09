@@ -1,12 +1,20 @@
 .menu__list {
    display: flex;
+   justify-content: space-between;
+
+   @include tablets {
+      flex-wrap: wrap;
+   }
 }
 
 .menu__item {
-   margin-right: 60px;
 
-   &:last-child {
-      margin-right: 0;
+   @include tablets {
+      margin-bottom: 20px;
+
+      &:nth-child(n+4) {
+         margin-bottom: 0;
+      }
    }
 }
 

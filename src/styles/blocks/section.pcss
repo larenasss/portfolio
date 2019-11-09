@@ -1,8 +1,24 @@
-.section-bg {
-  background: url('../images/content/background.jpg') center center / cover no-repeat;
-  height: 150%;
+section {
+  padding: 10% 0;
 }
 
-.section {
-  height: 100vh;
+.section-bg {
+  height: 150%;
+
+  @include tablets {
+    height: 200%;
+    background: url('../images/content/background.png') top center no-repeat;
+  }
+
+  @include phones {
+    height: 250%;
+  }
+
+  @include phonesX {
+    height: 200%;
+  }
+
+  @include phonesSE {
+    height: 250%;
+  }
 }

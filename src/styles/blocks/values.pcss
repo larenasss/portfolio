@@ -1,43 +1,120 @@
 .values {
    background: url('../images/content/skills.jpg') center center / cover no-repeat;
    display: flex;
-   justify-content: flex-end;
+   justify-content: center;
    position: relative;
 
-   &::before{
-      content: "";
-      position: absolute;
-      left: -36px;
-      top: 80px;
-      background-image: url('../images/content/skills-hand.png');
-      background-size: 100% 100%;
-      height: 100%;
-      width: 40%;
-      max-width: 640px;
-      display: flex;
-      align-items: flex-end;
+   @include tablets {
+      padding: 10% 0 55% 0;
    }
 }
 
 .values__container {
-   width: 60%;
    margin: 0;
-   padding-top: 5%;
+   padding-left: 30%;
+
+   @include tablets {
+      padding-left: 0;
+   }
+}
+
+.values__left{
+   position: absolute;
+   left: -10px;
+   bottom: -55px;
+   width: 40%;
+   max-height: 95%;
+   max-width: 640px;
+
+   @include tablets {
+      width: 36%;
+      bottom: -73px;
+      left: 30%;
+      transform: rotate(-90deg);
+      min-width: 330px;
+   }
+
+   @include phones {
+      bottom: -49px;
+      width: 338px;
+      left: 17%;
+   }
+
+   @include phonesX {
+      bottom: -26px;
+      left: 7%;
+   }
+
+   @include phonesSE {
+      bottom: -2px;
+      left: 5%;
+   }
+}
+
+.values__right {
+   @include tablets {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+}
+
+.values__left-pic {
+   width: 100%;
+   height: 100%;
+
+   @include phones {
+      width: 90%;
+      height: 90%;
+   }
+
+   @include phonesX {
+      width: 80%;
+      height: 80%;
+   }
+
+   @include phonesSE {
+      width: 70%;
+      height: 70%;
+   }
 }
 
 .values__info {
-   width: 60%;
+   width: 75%;
+   max-width: 580px;
    margin-bottom: 80px;
+
+   @include tablets {
+      max-width: 100%;
+      margin-bottom: 50px;
+      text-align: center;
+      width: 70%;
+   }
+
+   @include phones {
+      width: 100%;
+      text-align: start;
+      margin-bottom: 20px;
+   }
+}
+
+.values__widget {
+   padding-left: 10%;
+
+   @include tablets {
+      padding-left: 0;
+   }
 }
 
 .values__title {
-   font-size: 30px;
-   font-weight: 700;
    margin-bottom: 50px;
+
+   @include phones {
+      margin-bottom: 20px;
+   }
 }
 
 .values__desc {
-   opacity: 0.5;
-   line-height: 30px;
+   line-height: 24px;
 }
 

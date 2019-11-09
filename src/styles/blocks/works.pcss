@@ -1,23 +1,76 @@
 .works__container {
-   padding: 8% 0 0 2%;
+   padding: 0 0 0 2%;
+
+   @include desktop {
+      padding: 0 0 0 8%;
+   }
+
+   @include tablets {
+      padding: 0;
+      width: 95%;
+   }
+
+   @include phones {
+      width: 100%;
+   }
 }
 
 .works__title {
    margin-bottom: 80px;
+
+   @include desktop {
+      margin-bottom: 60px;
+   }
+
+   @include phones {
+      text-align: center;
+   }
 }
 
 .works__content {
    display: flex;
+   width: 95%;
+
+   @include tablets {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+   }
 }
 
 .works__left {
    margin-right: 160px;
    position: relative;
    z-index: 2;
+   width: 100%;
+
+   @include desktop {
+      margin-right: 95px;
+   }
+
+   @include tablets {
+      margin-right: 0;
+      margin-bottom: 50px;
+   }
 }
 
 .works__right {
    color: #353e4f;
+   width: 30%;
+
+   @include desktop {
+      width: 40%;
+   }
+
+   @include tablets {
+      width: 60%;
+      text-align: center;
+   }
+
+   @include phones {
+      width: 90%;
+      text-align: start;
+   }
 }
 
 .works__tags {
@@ -25,10 +78,9 @@
 }
 
 .works__desc-text {
-   opacity: 0.7;
    font-weight: 600;
    margin-bottom: 20px;
-   line-height: 28px;
+   line-height: 24px;
 }
 
 .works__text-title {
@@ -51,7 +103,16 @@
    color: #586ed3;
    position: relative;
    padding-left: 30px;
-   display: flex; 
+   display: flex;
+
+   @include tablets {
+      justify-content: center;
+   }
+
+   @include phones {
+      width: 90%;
+      justify-content: flex-start;
+   }
 
    &:hover {
       text-decoration: underline;
@@ -66,22 +127,12 @@
    width: 15px;
    height: 18px;
    fill: #586ed3;
-}
 
-.works__number {
-   position: absolute;
-   font-size: 400px;
-   font-weight: 800;
-   color: #e6e6e6;
-   top: -45px;
-   right: -170px;
-   z-index: -1;
-}
+   @include tablets {
+      left: 30%;
+   }
 
-.works__number-item {
-   display: none;
-
-   &--active {
-      display: block;
+   @include phones {
+      left: 0;
    }
 }
