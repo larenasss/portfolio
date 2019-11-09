@@ -77,7 +77,9 @@ function validateForm(form) {
          if(formBlockName.classList.contains('active')) {
             formBlockName.classList.remove('active')
          }
-      })
+      });
+
+      return false;
    }
 
   return valid;

@@ -1,3 +1,28 @@
+<template lang="pug">
+  .maincontent
+    header_auto
+    menu_auto
+    router-view
+</template>
+
+<script>
+import header_auto from './components/header-auto.vue';
+import menu_auto from './components/menu.vue';
+
+export default {
+  name: 'app',
+  components: {
+    header_auto,
+    menu_auto,
+  },
+  data () {
+    return {
+    }
+  }
+}
+</script>
+
+
 <style lang="postcss">
   @import "normalize.css";
   @import "../styles/mixins.pcss";
@@ -94,6 +119,7 @@
     content: "";
     position: absolute;
     top: 50%;
+    left: 0;
     width: 16px;
     height: 3px;
     background-color: #bf2929;
@@ -158,233 +184,51 @@
   // Меню
 
   .nav {
-    align-items: center;
     display: flex;
     color: #414c63;
     height: 77px;
+  }
+
+  .nav__list {
+    display: flex;
+    padding: 0 30px;
 
     @include phones {
       justify-content: center;
     }
   }
 
-  .nav__list {
-    display: flex;
-    padding: 0 30px;
-  }
-
   .nav__item {
-    margin-right: 50px;
     font-size: 18px;
     white-space: nowrap;
 
-    &:last-child {
-      margin-right: 0;
-    }
-
     @include phones {
-      
+      justify-content: center;
     }
   }
 
   .nav__link {
+    height: 100%;
+    display: flex;
+    align-items: center;
     text-decoration: none;
+    padding: 5px 30px;
+    border-bottom: 2px solid transparent;
+
+    &:before {
+      content:attr(data-text);
+    }
   }
+
+  .router-link-exact-active {
+    color: #006aed;
+    border-bottom: 2px solid #006aed;
+  }
+
 
   // Обо мне
 
-  .aboutme {
-    background-color: #f7f9fe;
-    padding-bottom: 40px;
-  }
-
-  .aboutme__info {
-    padding: 50px 0;
-    display: flex;
-
-    @include phones {
-      flex-direction: column;
-    }
-  }
-
-  .aboutme__info-title {
-    margin-right: 65px;
-    font-size: 21px;
-    font-weight: 700;
-
-    @include phones {
-      margin-bottom: 20px;
-    }
-  }
-
-  .aboutme__btn {
-    display: flex;
-    align-items: center;
-  }
-
-  .aboutme__btn-link {
-    color: #383bcf;
-    font-weight: 700;
-  }
-
-  .aboutme__icon-add {
-    margin-right: 12px;
-  }
-
-  .aboutme__list {
-    display: flex;
-    justify-content: space-between;
-
-    @include phones {
-      flex-direction: column;
-    }
-  }
-
-  .aboutme__item {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 15px 20px 20px 20px;
-    max-width: 525px;
-    width: 48%;
-    height: 387px;
-    box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
-    background-color: #ffffff;
-    margin-right: 20px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    @include phones {
-      flex-direction: column;
-      margin-right: 0;
-      margin-bottom: 20px;
-      width: 100%;
-    }
-  }
-
-  .aboutme__item-edit {
-    background: svg-load('pencil.svg', fill=#414c63, width=100%, height=100%);
-    background-repeat: no-repeat;
-    width: 16px;
-    height: 15px;
-    opacity: 0.5;
-  }
-
-  .aboutme__desk{
-    position: relative;
-    height: 18%;
-    width: 100%;
-    border-bottom: 1px solid #bbbfc7;
-  }
-
-  .aboutme__item-btn {
-    position: absolute;
-    right: 1%;
-    display: flex;
-    top: 30%;
-    transform: translate(0,-40%);
-  }
-
-  .aboutme__block-interest {
-    margin-right: 20px;
-    width: 75px;
-  }
-
-  .aboutme__block-skill {
-    margin-right: 10px;
-    font-size: 16px;
-    width: 50%;
-    max-width: 210px;
-  }
-
-  .aboutme__input {
-    padding: 12px 8px 12px 12px;
-    font-size: 18px;
-    font-weight: 600;
-    border-bottom: 1px solid #000000;
-
-    &::placeholder {
-      opacity: 0.5;
-    }
-
-    &--noborder{
-      @include tablets {
-        border-bottom: transparent;
-      }
-    }
-  }
-
-  .aboutme__item-bottom {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    position: relative;
-  }
-
-  .aboutme__input-interest {
-    width: 100%;
-  }
-
-  .aboutme__input-skill {
-    width: 100%;
-  }
-
-  .aboutme__item-icon {
-    width: 40px;
-    height: 40px;
-    
-    &:before {
-      width: 18px;
-      height: 3px;
-    }
-
-    &:after {
-      width: 3px;
-      height: 18px;
-    }
-  }
-
-  .aboutme__skills-item {
-    position: relative;
-    display: flex;
-    margin-bottom: 25px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    &::after {
-      content: "";
-      opacity: .5;
-      position: absolute;
-      top: 3px;
-      right: 40px;
-      background: svg-load('pencil.svg', fill=#414c63, width=100%, height=100%);
-      background-repeat: no-repeat;
-      width: 16px;
-      height: 15px;
-    }
-
-    &::before {
-      content: "";
-      opacity: .5;
-      position: absolute;
-      top: 3px;
-      right: 10px;
-      background: svg-load('trash.svg', fill=#414c63, width=100%, height=100%);
-      background-repeat: no-repeat;
-      width: 13px;
-      height: 15px;
-    }
-  }
-
-  .aboutme__skills-value {
-    position: absolute;
-    right: 100px;
-  }
-
+ 
   // Работы
 
   .works{
@@ -951,7 +795,11 @@
     width: 100%;
     height: 100vh;
     background: url('../images/content/background.png')center center / cover no-repeat;
-    position: relative;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
   }
 
   .authorization__bg {
@@ -1057,194 +905,7 @@
     background-color: #414c63;
   }
 
-  
-
 </style>
-<template lang="pug">
-  .maincontent
-    header.header
-      .container.header__container
-        .header__user
-          img(src="../images/content/user.jpg").header__user-pic
-          .header__user-name Бутрий Алексей
-        .header__desc Панель администрирования
-        .header__out
-          a.header__out-link Выйти
-    .menu
-      .container
-        nav.nav
-          - var menu = ['Обо мне', 'Работы', 'Отзывы']
-            ul.nav__list
-              each item in menu
-                li.nav__item
-                  a(href="#").nav__link #{item}
-    section.aboutme
-      .container
-        .aboutme__content
-          .aboutme__info
-            .aboutme__info-title Блок "Обо мне"
-            .aboutme__btn
-              button.icon-add.aboutme__icon-add
-              a.aboutme__btn-link Добавить группу
-          .aboutme__elements
-            ul.aboutme__list
-              li.aboutme__item
-                .aboutme__desk
-                  label.aboutme__block(for="")
-                    input.aboutme__input.aboutme__input--noborder(type="text", name="name", placeholder="Название")
-                  .aboutme__item-btn
-                    .aboutme__item-okey.icon__okey
-                    .aboutme__item-close.icon__close
-                .aboutme__item-bottom
-                  label.aboutme__block.aboutme__block-skill(for="")
-                    input.aboutme__input.aboutme__input-skill(type="text", name="name", placeholder="Новый навык")
-                  label.aboutme__block.aboutme__block-interest(for="")
-                    input.aboutme__input.aboutme__input-interest(type="text", name="name", placeholder="100 %")
-                  button.aboutme__item-icon.icon-add
-              li.aboutme__item
-                .aboutme__desk
-                  label.aboutme__block(for="")
-                    input.aboutme__input.aboutme__input--noborder(type="text", name="name", placeholder="Название")
-                  .aboutme__item-btn
-                    .aboutme__item-edit
-                ul.aboutme__skills
-                  -
-                    var items = [
-                      ['Git', '100  %'],
-                      ['Terminal', '90  %'],
-                      ['Gulp', '80  %'],
-                      ['Webpack', '70  %'],
-                    ]
-                  each item in items
-                    li.aboutme__skills-item
-                      .aboutme__skills-key #{item[0]}
-                      .aboutme__skills-value #{item[1]}
-                .aboutme__item-bottom
-                  label.aboutme__block.aboutme__block-skill(for="")
-                    input.aboutme__input.aboutme__input-skill(type="text", name="name", placeholder="Новый навык")
-                  label.aboutme__block.aboutme__block-interest(for="")
-                    input.aboutme__input.aboutme__input-interest(type="text", name="name", placeholder="100 %")
-                  button.aboutme__item-icon.icon-add
-    section.works
-      .container
-        .works__content
-          .works__info-title Редактирование работы
-          .works__info
-            .works__left
-              .works__left-content Перетащите или загрузите для загрузки изображения
-              button.works__button Загрузить
-            .works__right
-              .works__block
-                .works__block-title Название
-                label.works__label(for="")
-                  input.works__input(type="text", name="name", placeholder="Новый навык")
-              .works__block
-                .works__block-title Ссылка
-                label.works__label(for="")
-                  input.works__input(type="text", name="name", placeholder="Новый навык")
-              .works__block.works__block--textarea
-                .works__block-title.works__block-title--textarea Описание
-                label.works__label(for="")
-                  textarea.works__input.works__input--textarea(type="text", name="name", placeholder="Новый навык")
-              .works__block
-                .works__block-title Добавление тэга
-                label.works__label(for="")
-                  input.works__input(type="text", name="name", placeholder="Новый навык")
-              .works__right-tags
-                - var tags = ['HTML5', 'CSS3', 'JS']
-                  ul.tags
-                    each item in tags
-                      li.tags__item #{item}
-                        .tags-icon__close.icon__close
-              .works__right-btn
-                a.works__right-link Отмена
-                button.works__button Сохранить
-        .works__items
-          .works__add
-            .works__add-btn
-            .works__add-desk Добавить работу
-          .works__item
-            ul.preview
-              li.preview__item HTML5
-              li.preview__item CSS3
-              li.preview__item Javascript
-            .desk
-              .desk__content
-                .desk__work Новая работа
-                .desk__info Описание работы
-                a.desk__link http://google.com
-              .desk__btn
-                .desk__edit Править
-                .desk__del Удалить
-                  .desk-icon__close.icon__close
-    section.reviews 
-      .container
-        .reviews__content
-          .reviews__title Новый отзыв
-          .reviews__info
-            .user
-              .user__img
-              a.user__link Добавить фото
-            .reviews__desk
-              .reviews__desk-info
-                .reviews__desk-content
-                  .reviews__desk-title Имя автора
-                  label.reviews__block(for="")
-                    input.reviews__input(type="text", name="name", placeholder="Новый навык")
-                .reviews__desk-content
-                  .reviews__desk-title Должность автора
-                  label.reviews__block(for="")
-                    input.reviews__input(type="text", name="name", placeholder="Новый навык")
-              .reviews__desk-content.reviews__desk-content--textarea
-                .reviews__desk-title.reviews__desk-title--textarea Отзыв
-                label.reviews__block(for="")
-                  textarea.reviews__input.reviews__input--textarea(name="message", placeholder="Сообщение к письму")
-              .reviews__desk-btn
-                a.reviews__desk-link Отмена
-                button.reviews__button Сохранить
-        .reviews__items
-          .reviews__add
-            .reviews__add-btn
-            .reviews__add-desk Добавить отзыв
-          .reviews__item
-            .reviews__user
-              img(src="../images/content/user.jpg").reviews__user-pic
-              .reviews__user-desk
-                .reviews__user-name Владимир Сабанцев
-                .reviews__user-pos Основатель Лофтскул
-            .reviews__text
-              p Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
-            .reviews__btn
-              .reviews__edit Править
-              .reviews__del Удалить
-                .reviews-icon__close.icon__close
-    section.authorization
-      .authorization__bg
-      .window
-        .window__content
-          .window__title Авторизация
-          label.window__block(for="")
-            .window__block-content
-              .window__block-title Логин
-              input.window__input(type="text", name="name", placeholder="Terminator")
-          label.window__block(for="")
-            .window__block-content
-              .window__block-title Пароль
-              input.window__input(type="text", name="name", placeholder="••••••••••")
-          .window__btn
-            button.window__button Сохранить
-          .window__close.icon__close
-            
-
-                    
-                
-                
-              
-          
 
 
 
-
-
-
-</template>
