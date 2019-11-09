@@ -6,10 +6,11 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const axios = require('axios').default;
 
 module.exports = (env, argv) => {
   const isProductionBuild = argv.mode === "production";
-  const publicPath = '/';
+  const publicPath = '/portfolio/dist/';
 
   // Тут начинается описание зависимостей
   const pcss = {
@@ -89,8 +90,8 @@ module.exports = (env, argv) => {
 
   const config = {
     entry: {     // Слежка за файлами js
-      main: "./src/main.js",
-      admin: "./src/admin/main.js"
+      main: ["@babel/polyfill", "./src/main.js"],
+      admin: ["@babel/polyfill", "./src/admin/main.js"],
     },
     output: {    // Указывает место куда отправляются файлы после обработки
       path: path.resolve(__dirname, "./dist"), // Методом path прописан абсолютный путь,который будет склеен с папкой dist

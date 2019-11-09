@@ -1,0 +1,53 @@
+.user-info {
+   display: flex;
+   position: absolute;
+   top: 20%;
+   left: 50%;
+   transform: translate(-70%);
+
+   &--nodisplay {
+      display: none;
+
+      @include tablets {
+         display: flex;
+      }
+
+   }
+
+   @include tablets {
+      position: inherit;
+      transform: inherit;
+   }
+
+   @include phones {
+      flex-direction: column;
+      align-items: center;
+   }
+}
+
+.user-info__title {
+   font-size: 72px;
+   font-weight: 800;
+   line-height: 60px;
+   
+   @include phones {
+      text-align: center;
+   }
+}
+
+.user-info__subtitle {
+   margin-right: 30px;
+   text-align: right;
+   font-size: 18px;
+   font-weight: 200;
+   opacity: 0.4;
+   line-height: 30px;
+
+   @include phones {
+      margin-right: 0;
+      text-align: center;
+   }
+} 
+
+
+   

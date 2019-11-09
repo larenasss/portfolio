@@ -1,0 +1,24 @@
+script(type="text/x-template")#fullscreen-menu
+   .welcome__gamburger
+      button.gamburger(
+         @click="menuIsOpened = !menuIsOpened"
+      )
+         .gamburger__item
+      transition(name="slide")
+         section.fullscreen-menu(v-if="menuIsOpened")
+            .container.fullscreen-menu__container
+               .fullscreen-menu__content
+                  nav.fullscreen-menu__nav
+                     - var menu = ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться']
+                     ul.fullscreen-menu__list
+                        each item in menu
+                           li.fullscreen-menu__item
+                              a(href="#").fullscreen-menu__link #{item}
+                  .fullscreen-menu__social
+                     - var icons = ['insta', 'vk', 'github'] 
+                     ul.socials
+                        each item in icons
+                           li.socials__item.socials__item
+                              a(href="#").socials__link
+                                 +icon(`${item}`, 'socials__icon--fullscreen')
+                  .fullscreen-menu__close(@click="menuIsOpened = !menuIsOpened")

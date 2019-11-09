@@ -1,0 +1,29 @@
+.menu__list {
+   display: flex;
+   justify-content: space-between;
+
+   @include tablets {
+      flex-wrap: wrap;
+   }
+}
+
+.menu__item {
+
+   @include tablets {
+      margin-bottom: 20px;
+
+      &:nth-child(n+4) {
+         margin-bottom: 0;
+      }
+   }
+}
+
+.menu__link {
+   text-decoration: none;
+   opacity: .8;
+
+   &:hover {
+      text-shadow: -0.06px 0 #ffffff, 0.06px 0 #ffffff;
+      transition: text-shadow 1s;
+   }
+}

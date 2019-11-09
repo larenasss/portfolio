@@ -1,0 +1,70 @@
+.summary {
+   padding: 0;
+   height: 30%;
+   background: url('../images/content/summary-bg.png') center center / cover no-repeat;
+
+   @include tablets {
+      height: 50%;
+      background: url('../images/content/summary-bg-tabl.png') center center / cover no-repeat;
+   }
+}
+
+.summary__container {
+   display: flex;
+   flex-direction: inherit;
+   justify-content: center;
+   max-width: 1000px;
+
+   @include desktop {
+      align-items: center;
+   }
+
+   @include phones {
+      width: 90%;
+      flex-direction: column;
+   }
+}
+
+.summary__left {
+   width: 30%;
+   margin-right: 100px;
+
+   @include phones {
+      margin-right: 0;
+      width: 100%;
+   }
+}
+
+.summary__right {
+   width: 50%;
+   z-index: 2;
+
+   @include phones {
+      width: 100%;
+   }
+}
+
+.summary__subtitle {
+   opacity: 0.5;
+   font-weight: 400;
+   margin-bottom: 20px;
+}
+
+.summary__title {
+   font-size: 36px;
+   font-weight: 700;
+   margin-bottom: 30px;
+}
+
+.summary__text {
+   margin-bottom: 100px;
+
+   @include phones {
+      margin-bottom: 30px;
+    }
+}
+
+.summary__ps {
+   font-style: italic;
+   line-height: 30px;
+}

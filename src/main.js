@@ -5,3 +5,8 @@ if (process.env.NODE_ENV === "development") { // Если идет разраб�
 
 // Ниже подключать js файлы
 import "./scripts/skills";
+import "./scripts/works";
+import "./scripts/reviews";
+import "./scripts/parallax";
+import "./scripts/fullscreen-menu";
+import "./scripts/form";
