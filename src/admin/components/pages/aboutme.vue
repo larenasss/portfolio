@@ -4,11 +4,16 @@
         .aboutme__content
           .aboutme__info
             .aboutme__info-title Блок "Обо мне"
-            .aboutme__btn
+            .aboutme__btn(
+              v-if="skillsAdd === false"
+              @click="skillsAdd = true")
               button.icon-add.aboutme__icon-add
               a.aboutme__btn-link Добавить группу
         ul.aboutme__list
-          skillsAdd
+          skillsAdd(
+            v-if="skillsAdd"
+            @close="close"
+          )
           li.aboutme__item(v-for="category in categories" :key="category.id")
             skillsItem(
               :category="category"
@@ -17,7 +22,7 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import skillsAdd from '../slillsAdd';
+import skillsAdd from '../skillsAdd';
 import skillsItem from '../skillsItem';
 import { objectExpression } from 'babel-types';
 
@@ -31,6 +36,7 @@ export default {
     skillsAdd
   },
   data: () => ({
+    skillsAdd: false,
     title: ""
   }),
   created() {
@@ -42,20 +48,9 @@ export default {
     })
   },
   methods: {
-    ...mapActions("categories", ["addCategory", "fetchCategories", "deleteCategories"]),
-    async removeCategory(category) {
-      try {
-        const response = await this.deleteCategories(this.category.id);
-      } catch (error) {
-      }
-    },
-    async addNewCategory() {
-      try {
-        await this.addCategory(this.title);
-      } catch (error) {
-        alert(error.message);
-      }
-      
+    ...mapActions("categories", ["fetchCategories"]),
+    close() {
+      this.skillsAdd = false;
     }
   }
 }
@@ -105,6 +100,7 @@ export default {
   .aboutme__list {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     @include phones {
       flex-direction: column;
@@ -117,13 +113,14 @@ export default {
     justify-content: space-between;
     padding: 15px 20px 20px 20px;
     max-width: 525px;
-    width: 48%;
     height: 387px;
     box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
     margin-right: 20px;
-
-    &:last-child {
+    margin-bottom: 20px;
+    width: 48%;
+  
+    &:nth-child(even){
       margin-right: 0;
     }
 
@@ -144,6 +141,15 @@ export default {
 
   .aboutme__item-edit {
     background: svg-load('pencil.svg', fill=#414c63, width=100%, height=100%);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 15px;
+    opacity: 0.5;
+    margin-right: 20px;
+  }
+
+  .aboutme__item-remove {
+    background: svg-load('trash.svg', fill=#414c63, width=100%, height=100%);
     background-repeat: no-repeat;
     width: 16px;
     height: 15px;
@@ -199,6 +205,13 @@ export default {
     justify-content: flex-end;
     align-items: center;
     position: relative;
+
+    &.blocked {
+      opacity: .5;
+      filter: grayscale(100%);
+      pointer-events: none;
+      user-select: none;
+    }
   }
 
   .aboutme__input-interest {
@@ -228,38 +241,17 @@ export default {
     position: relative;
     display: flex;
     margin-bottom: 25px;
+    justify-content: space-between;
 
     &:last-child {
       margin-bottom: 0;
     }
-
-    &::after {
-      content: "";
-      opacity: .5;
-      position: absolute;
-      top: 3px;
-      right: 40px;
-      background: svg-load('pencil.svg', fill=#414c63, width=100%, height=100%);
-      background-repeat: no-repeat;
-      width: 16px;
-      height: 15px;
-    }
-
-    &::before {
-      content: "";
-      opacity: .5;
-      position: absolute;
-      top: 3px;
-      right: 10px;
-      background: svg-load('trash.svg', fill=#414c63, width=100%, height=100%);
-      background-repeat: no-repeat;
-      width: 13px;
-      height: 15px;
-    }
+  }
+  .aboutme__skills-key {
+    flex: .6;
   }
 
   .aboutme__skills-value {
-    position: absolute;
     right: 100px;
   }
 
