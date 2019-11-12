@@ -9,8 +9,8 @@
     input.aboutme__input.aboutme__input-skill(v-model="editedSkill.title")
     input.aboutme__input.aboutme__input-interest(v-model="editedSkill.percent")
     .aboutme__skills-btn
-      button.icon__okey(@click="editMode = false")
-      button.icon__close(@click="editExistedSkill")
+      button.icon__okey(@click="editExistedSkill")
+      button.icon__close(@click="editMode = false")
 </template>
 
 <script>
@@ -30,11 +30,7 @@ export default {
       editedSkill: {...this.skill},
     }
   },
-  created() {
-    this.fetchCategories();
-  },
   methods: {
-    ...mapActions("categories", ["fetchCategories"]),
     ...mapActions("skills", ["removeSkill", "editSkill"]),
     async editExistedSkill() {
       try {
@@ -44,7 +40,6 @@ export default {
         
       }
     },
-     
     async removeExistedSkill() {
       try {
         await this.removeSkill({

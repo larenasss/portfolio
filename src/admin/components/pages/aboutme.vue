@@ -5,25 +5,26 @@
           .aboutme__info
             .aboutme__info-title Блок "Обо мне"
             .aboutme__btn(
-              v-if="skillsAdd === false"
-              @click="skillsAdd = true")
+              v-if="categoryAdd === false"
+              @click="categoryAdd = true")
               button.icon-add.aboutme__icon-add
               a.aboutme__btn-link Добавить группу
         ul.aboutme__list
-          skillsAdd(
-            v-if="skillsAdd"
-            @close="close"
+          categoryAdd(
+            v-if="categoryAdd"
+            @closeNewCategory="closeNewCategory"
+            :category="category"
           )
           li.aboutme__item(v-for="category in categories" :key="category.id")
-            skillsItem(
+            categoryItem(
               :category="category"
             )
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
-import skillsAdd from '../skillsAdd';
-import skillsItem from '../skillsItem';
+import categoryAdd from '../categoryAdd';
+import categoryItem from '../categoryItem';
 import { objectExpression } from 'babel-types';
 
 
@@ -32,11 +33,11 @@ export default {
     category: Object
   },
   components: {
-    skillsItem,
-    skillsAdd
+    categoryItem,
+    categoryAdd
   },
   data: () => ({
-    skillsAdd: false,
+    categoryAdd: false,
     title: ""
   }),
   created() {
@@ -49,8 +50,8 @@ export default {
   },
   methods: {
     ...mapActions("categories", ["fetchCategories"]),
-    close() {
-      this.skillsAdd = false;
+    closeNewCategory() {
+      this.categoryAdd = false;
     }
   }
 }

@@ -1,13 +1,12 @@
 <template lang="pug">
-   .aboutme__item-cont
-      .aboutme__desk
-         label.aboutme__block(for="")
-            h4.aboutme__input.aboutme__input--noborder {{category.category}}
-         .aboutme__item-btn
-            button.aboutme__item-edit
-            button.aboutme__item-remove(@click.prevent="removeCategory")
+    .aboutme__item-cont
+      categoryAddinput(
+        :category="category"
+        @removeCategory="removeCategory"
+      )
       ul.aboutme__skills
         skillItemInput(
+          :category="category"
           v-for="skill in category.skills"
           :key="skill.id"
           :skill="skill"
@@ -25,20 +24,19 @@
 <script>
 import { mapActions } from "vuex";
 import { objectExpression } from 'babel-types';
+import categoryAddinput from './categoryAddInput'
 
 export default {
-  components: {
-    skillItemInput: () => import("./skillsIteminput")
-  },
   props: {
-    category: {
-      type: Object,
-      default: () => ({}),
-      required: true
-    }
+    category: Object
+  },
+  components: {
+    skillItemInput: () => import("./skillsIteminput"),
+    categoryAddinput
   },
   data() {
     return {
+      title: "",
       skill: {
         title: "",
         percent: 0,
@@ -66,7 +64,14 @@ export default {
       } finally {
         this.formBlocked = false;
       }
-    }
+    },
+    async addNewCategory(){
+      this.$emit('addNewCategory', {
+        title: this.title
+      })
+    },
+   
+    
   }
 }
 </script>

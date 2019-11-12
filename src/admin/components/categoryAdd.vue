@@ -5,7 +5,7 @@
           input.aboutme__input.aboutme__input--noborder(type="text" v-model="title" name="name" placeholder="Название")
         .aboutme__item-btn
           button.aboutme__item-okey.icon__okey(
-            @click="addNewCategory();closeAdd()"
+            @click="addNewCategory(); closeNewCategory()"
           )
           button.aboutme__item-close.icon__close
       .aboutme__item-bottom.blocked
@@ -20,12 +20,20 @@
   import { mapActions, mapState } from "vuex";
   import { objectExpression } from 'babel-types';
 
+  import categoryAddInput from './categoryAddInput'
+
 
 export default {
+  props: {
+    category: Object
+  },
+  components: {
+    categoryAddInput
+  },
   data: () => ({
     title: "",
   }),
-  created() {
+  mounted() {
     this.fetchCategories();
   },
   computed: {
@@ -43,8 +51,8 @@ export default {
         alert(error.message);
       }
     },
-    closeAdd() {
-      this.$emit('close')
+    closeNewCategory() {
+      this.$emit('closeNewCategory')
     }
   }
 }

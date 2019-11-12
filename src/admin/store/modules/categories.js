@@ -1,5 +1,3 @@
-import { start } from "repl";
-
 export default {
    namespaced: true,
    state: {
@@ -15,6 +13,12 @@ export default {
     REMOVE_CATEGORIES(state, removedCategoryId) {
       state.categories = state.categories.filter(
         category => category.id !== removedCategoryId
+      );
+    },
+    EDIT_CATEGORY(state, editedCategory) {
+      
+    state.categories = state.categories.map(category =>
+        category.id === editedCategory.id ? editedCategory : category
       );
     },
     ADD_SKILL(state, newSkill) {
@@ -87,5 +91,15 @@ export default {
         } catch (error) {
         }
       },
+      async editCategory({commit}, editedCategory) {
+        try {
+          const {data} = await this.$axios.post(`/categories/${editedCategory.id}`, {title: editedCategory.category});
+          commit("EDIT_CATEGORY", data.category );
+         
+          
+        } catch (error) {
+          
+        }
+      }
    }
 }
