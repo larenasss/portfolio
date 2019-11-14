@@ -1,50 +1,160 @@
 <template lang="pug">
    section.works
       .container
-        worksForm
+        h1.works__title  Блок "Работы"
+        .works__content(v-if='isShown')
+          form(
+            @submit.prevent="addNewWork"
+          ).works__form
+            .form__title.works__form-title Редактирование работы
+            .form__content.form__content-works
+              label.works__left
+                input(
+                  type="file"
+                  @change="appendFileAndRenderFoto"
+                ).works__left-content 
+                span.works__left-text Нажмите кнопку для загрузки изображения
+                .works__button Загрузить
+                .works__left-form-pic
+                  .works__form-avatar-empty(
+                    :class="{filled: renderedPhoto.length}"
+                    :style="{'backgroundImage' : `url(${renderedPhoto})`}"
+                )
+              .form
+                .form__row
+                  label.form__block(for="")
+                    .form__block-title Название
+                    input.form__input(
+                      v-model="editedWork.title"
+                      type="text", name="name", placeholder="Название работы")
+                .form__row 
+                  label.form__block(for="")
+                    .form__block-title Ссылка
+                    input.form__input(
+                      v-model="editedWork.link"
+                      type="text", name="name", placeholder="Ссылка")
+                .form__row.form__row--textarea
+                  label.form__block.form__block--textarea(for="")
+                    .form__block-title.form__block-title--textarea Описание
+                    textarea.form__input.form__input--textarea(
+                      v-model="editedWork.description"
+                      type="text", name="name", placeholder="Описание")
+                .form__row
+                  label.form__block(for="")
+                    .form__block-title Добавление тэга
+                    input.form__input(
+                      v-model="editedWork.techs"
+                      type="text", name="name", placeholder="HTML5, CSS3, JavaScript")
+                .works__right-tags
+                  ul.tags
+                    li.tags__item(v-for='tag, index in tagsArray')
+                      span.tags__title {{ tag }}
+                      button(
+                        @click='deleteTag(index)'
+                      ).tags-icon__close.icon__close
+                .form__row.form__row-btn
+                  button(
+                    type='reset'
+                    @click=" isShown = false"
+                  ).form__row-link Отмена
+                  button(
+                    type="submit"
+                  ).form__row-button Сохранить
         ul.works__items
-          li.works__add
-            .works__add-btn
+          li.works__item.works__add
+            button(
+              @click='createForm'
+            ).works__add-btn
             .works__add-desk Добавить работу
           workItem(
             v-for="work in works" :key="work.id"
             :work="work"
+            @editedExistedWork="editedExistedWork"
           )
 </template>
 
 <script>
-import worksForm from '../worksForm';
-import workItem from '../workItem';
 import { mapActions, mapState } from "vuex";
 export default {
   components: {
-    worksForm,
-    workItem
+    workItem: () => import('../workItem'),
   },
-  data: () => ({
-    renderedPhoto: "",
-    work: {
-      title: "",
-      techs: "",
-      photo: "",
-      link: "",
-      description: ""
+  data() {
+    return {
+      work: {
+        title: '',
+        techs: '',
+        photo: '',
+        link: '',
+        description: ''
+      },
+      renderedPhoto: '',
+      editedWork: { ...this.work },
+      isEdit: false,
+      isShown: false
     }
-  }),
+  },
   created() {
     this.fethWork();
   },
   computed: {
     ...mapState("works", {
       works: state => state.works
-    })
+    }),
+    tagsArray() {
+      return this.editedWork.techs.split(',').filter(el => el.trim())
+    }
   },
   methods: {
-    ...mapActions("works", ["fethWork"]),
+    ...mapActions("works", ["fethWork", "addWork", "editWork"]),
+     createForm() {
+      this.isEdit = false;
+      this.isShown = true;
+      this.renderedPhoto = ""
+      this.editedWork = {...this.work}
+    },
+    appendFileAndRenderFoto(e) {
+      const file = e.target.files[0];
+      this.editedWork.photo = file;
+
+      const reader = new FileReader();
+
+      try {
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.renderedPhoto = reader.result;
+        }
+      } catch (error) {
+        
+      }
+    },
+    editedExistedWork(editedWorkItem) {
+      this.isEdit = true;
+      this.isShown = true;
+      this.editedWork = editedWorkItem;
+      this.renderedPhoto = "https://webdev-api.loftschool.com/" + editedWorkItem.photo;
+    },
+     async addNewWork() {
+      try {
+        if (this.isEdit) {
+          this.editWork(this.editedWork);
+          this.isShown = false;
+        } else {
+          this.addWork(this.editedWork),
+          this.isShown = false;
+          this.renderedPhoto = ""
+        }
+      } catch (error) {
+      }
+    },
+    deleteTag(index) {
+      let editedTechsArr = this.editedWork.techs.split(',')
+      const deletedTag = editedTechsArr.splice(index, 1)
+      this.editedWork.techs = editedTechsArr.join(',')
+    },
   }
 }
 </script>
-
 <style lang="postcss">
 
 @import "../../../styles/mixins.pcss";
@@ -53,32 +163,22 @@ export default {
     background-color: #f7f9fe;
   }
 
-  .works__content {
+  .works__title {
+    font-size: 21px;
+    font-weight: 700;
+    padding: 50px 0;
+  }
+
+  .works__form {
     background-color: #ffffff;
     width: 100%;
     padding: 3%;
     margin-bottom: 40px;
+    box-shadow: 0px 0px 23px 5px rgba(0,0,0,0.15);
 
     @include phones {
       padding: 4% 6%;
     }
-  }
-
-  .works__info {
-    display: flex;
-    
-    @include tablets {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-
-  .works__info-title {
-    padding-bottom: 3%;
-    margin-bottom: 40px;
-    border-bottom: 1px solid black;
-    font-size: 18px;
-    font-weight: 700;
   }
 
   .works__left {
@@ -87,47 +187,53 @@ export default {
     border: 1px dashed #a1a1a1;
     background-color: #dee4ed;
     text-align: center;
-    margin-right: 25px;
-
+    margin-right: 40px;
+    position: relative;
+    padding: 7% 12%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 
     &.filled {
     background: center center no-repeat / cover;
     }
 
     @include tablets {
-      margin-right: 0;
+      margin-right: 0; 
       margin-bottom: 40px;
       width: 70%;
     }
 
     @include phones {
       width: 100%;
+      height: 200px;
     }
   }
 
-   .reviews__form-pic {
-    position: relative;
+  .works__left-form-pic {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 100%;
-    height: 276px;
-    border: 1px dashed #a1a1a1;
-    background-color: #dee4ed;
-    padding: 7% 13% 5%;
     text-align: center;
-    margin-right: 25px;
 
     &.filled {
     background: center center no-repeat / cover;
     }
-
   }
 
   .works__form-avatar-empty {
-    position: relative;
     width: 100%;
     height: 276px;
     
     &.filled {
       background: center center no-repeat / cover;
+    }
+
+    @include phones {
+      height: 200px;
     }
 }
 
@@ -138,7 +244,7 @@ export default {
     left: -9999px;
   }
 
-  .works__button, .reviews__button, .window__button {
+  .works__button, .window__button {
     width: 181px;
     height: 50px;
     border-radius: 25px;
@@ -147,72 +253,11 @@ export default {
     text-transform: uppercase;
     color: #ffffff;
     font-weight: 700;
-  }
-
-  .works__right {
+    z-index: 2;
+    cursor: pointer;
     display: flex;
-    flex-direction: column;
-    width: 50%;
-
-    @include tablets {
-      width: 70%;
-    }
-
-    @include phones {
-      width: 100%;
-    }
-  }
-
-  .works__right-btn, .reviews__desk-btn {
-    display: flex;
-    justify-content: flex-end;
     align-items: center;
-  }
-
-  .works__right-btn {
-    @include tablets {
-      justify-content: center;
-    }
-  }
-
-  .works__right-link, .reviews__desk-link {
-    margin-right: 40px;
-    color: #383bcf;
-  }
-
-  .works__block {
-    border-bottom: 1px solid black;
-    margin-bottom: 25px;
-
-    &--textarea {
-      border-bottom: none;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .works__block-title {
-    opacity: .5;
-
-    &--textarea {
-      margin-bottom: 10px;
-    } 
-  }
-
-  .works__input {
-    padding: 14px 0;
-    font-size: 18px;
-
-    &--textarea {
-      width: 100%;
-      height: 150px;
-      resize: none;
-      padding: 10px; 
-    }
+    justify-content: center;
   }
 
   .works__right-tags {
@@ -249,22 +294,49 @@ export default {
   }
 
   .works__items {
+    display: flex;
+    flex-flow: wrap;
+   
+
     @include phones {
-      display: flex;
       flex-direction: column;
+       align-items: center;
     }
   }
 
   .works__item {
     margin-bottom: 40px;
+    max-width: 380px;
+    width: 30%;
+    min-width: 320px;
+    height: 556px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 23px 5px rgba(0,0,0,0.15);
+    margin-right: 30px;
+    margin-bottom: 30px;
+
+    @include tablets {
+      &:nth-child(even) {
+        margin-right: 0;
+      }
+    }
+
+    @include phones {
+        margin-right: 0;
+    }
+
+    @include phones {
+      width: 100%;
+    }
   }
 
-  .works__add, .reviews__add {
+  .works__add {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 340px;
+    min-width: 320px;
+    width: 30%;
     height: 556px;
     background-color: #ffffff;
     background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
@@ -280,17 +352,7 @@ export default {
     }
   }
 
-  .reviews__add {
-    width: 340px;
-    height: 380px;
-
-    @include phones {
-      height: 111px;
-      width: 100%;
-    }
-  }
-
-  .works__add-btn, .reviews__add-btn {
+  .works__add-btn {
     width: 150px;
     height: 150px;
     border: 2px solid #ffffff;
@@ -344,46 +406,44 @@ export default {
     }
   }
 
-  .works__add-desk, .reviews__add-desk {
+  .works__add-desk {
     color: #ffffff;
   }
 
-  .works__items {
-    display: flex;
-  }
-
-  .works__item {
-    width: 340px;
-    height: 556px;
-    background-color: #ffffff;
-
-    @include phones {
-      width: 100%;
-    }
-  }
-
   .preview {
-    background: url("../../../images/content/slider/slider_1.jpg")center center / cover no-repeat;
     width: 100%;
     height: 30%;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     padding: 2%;
+    position: relative;
+  }
+
+  .preview__pic {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .preview__item {
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1% 4%;
-    border-radius: 15px;
-    background-color: #ffffff;
     margin-right: 10px;
 
     &:last-child {
       margin-right: 0;
     }
+  }
+
+  .preview__title {
+    padding: 5px 10px;
+    border-radius: 15px;
+    background-color: #ffffff;
   }
 
   .desk {
@@ -416,17 +476,18 @@ export default {
     justify-content: space-between;
   }
 
-  .desk__edit,.desk__del, .reviews__edit, .reviews__del  {
-    width: 105px;
+  .desk__edit, .desk__del  {
+    width: 90px;
+    text-align: start;
+    position: relative;
   }
 
-  .desk__edit, .reviews__edit {
-    position: relative;
+  .desk__edit {
 
     &:after {
       content: "";
-      top: 4px;
-      right: 10px;
+      top: 3px;
+      right: -5px;
       position: absolute;
       background: svg-load('pencil.svg', fill=#383bcf, width=100%, height=100%);
       width: 17px;
@@ -434,30 +495,16 @@ export default {
     }
   }
 
-  .desk__del, .reviews__del {
-     position: relative;
-  }
-
-  .desk-icon__close, .reviews-icon__close {
+  .desk-icon__close {
     position: absolute;
-    top: 4px;
-    right: 10px;
+    top: 3px;
+    right: 0;
     width: 15px;
     height: 15px;
   }
 
   .desk-icon__close:before,
   .desk-icon__close:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 18px;
-    height: 3px;
-    background-color: #bf2929;
-  }
-  
-  .reviews-icon__close:before,
-  .reviews-icon__close:after {
     content: "";
     position: absolute;
     top: 50%;

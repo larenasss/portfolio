@@ -1,13 +1,13 @@
 <template lang="pug">
   .aboutme__desk(v-if="editMode === false")
     label.aboutme__block(for="")
-      h4.aboutme__input.aboutme__input--noborder {{category.category}}
+      h4.aboutme__input-title {{category.category}}
     .aboutme__item-btn
       button.aboutme__item-edit(@click="editMode = true")
       button.aboutme__item-remove(@click="removeCategory")
   .aboutme__desk(v-else)
     label.aboutme__block(for="")
-      input.aboutme__input.aboutme__input--noborder(type="text" v-model="editedCategory.category" name="name" placeholder="Название")
+      input.aboutme__input.aboutme__input--noborder(type="text" v-model="editedCategory.category" name="name")
     .aboutme__item-btn
       button.aboutme__item-okey.icon__okey(
         @click="editExitedCategory"
@@ -47,7 +47,6 @@ export default {
       try {
         await this.editCategory(this.editedCategory);
         this.editMode = false;
-
       } catch (error) {
       }
     }

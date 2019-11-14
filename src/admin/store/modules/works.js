@@ -15,6 +15,11 @@ export default {
         work => work.id !== removedWorkId
       );
     },
+    EDIT_REVIEW(state, editWorkId) {
+      state.works = state.works.map(work =>
+        work.id === editWorkId.id ? editWorkId : work
+      )
+    }
   },
   actions: {
     async addWork({commit}, work) {
@@ -33,7 +38,7 @@ export default {
         
       }
     },
-    async fethWork({commit}) {
+    async fethWork({commit},) {
       const {data} = await this.$axios.get("/works/220");
       commit("SET_WORK", data);
     },
@@ -45,6 +50,14 @@ export default {
         
       }
     },
+    async editWork({commit}, editedWork) { 
+      try {
+        const {data} = await this.$axios.post(`/reviews/${editedWork.id}`, editedWork)
+        commit("EDIT_WORK", data.work)
+      } catch (error) {
+        
+      }
+    }
   }
 
 }

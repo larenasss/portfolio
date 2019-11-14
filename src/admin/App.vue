@@ -191,7 +191,6 @@ export default {
 
   .nav__list {
     display: flex;
-    padding: 0 30px;
 
     @include phones {
       justify-content: center;
@@ -218,6 +217,10 @@ export default {
     &:before {
       content:attr(data-text);
     }
+  
+    @include phones {
+      padding: 5px 20px;
+    }
   }
 
   .router-link-exact-active {
@@ -226,19 +229,123 @@ export default {
   }
 
 
-  // Обо мне
+  // Форма
 
- 
-  // Работы
+  .form {
+    width: 60%;
+
+    @include tablets {
+      width: 70%;
+    }
+    @include phones {
+      width: 100%;
+    }
+  }
+
+  .form__title {
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 3%;
+    box-shadow: 0 4px 2px -2px gray;
+  }
+
+  .form__content {
+    display: flex;
+    margin-top: 4%;
+
+    @include phones {
+      width: 100%;
+    }
+  }
+
+  .form__content-works {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form__row {
+    display: flex;
+  }
+
+  .form__block-title {
+    opacity: .5;
+
+    &--textarea {
+      margin-bottom: 20px;
+    }
+  }
+
+  .form__block {
+    border-bottom: 1px solid black;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    position: relative;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @include phones {
+      width: 100%;
+    }
+
+    &--textarea {
+      border-bottom: none;
+    }
+  }
 
 
- 
 
+  .form__input {
+    padding: 20px 2px;
+    font-weight: 700;
+    width: 100%;
+
+    &--textarea {
+      width: 100%;
+      height: 100px;
+      resize: none;
+      padding: 10px; 
+    }
+  }
+
+  .form__row-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .form__row-link {
+    margin-right: 40px;
+    color: #383bcf;
+  }
+
+  .form__row-button, .window__button {
+    width: 181px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #ffffff;
+    background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .input__error {
+    position: absolute;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+    bottom: -18px;
+    left: 0;
+    color: firebrick; 
+  }
 
   .authorization {
     width: 100%;
     height: 100vh;
-    background: url('../images/content/background.png')center center / cover no-repeat;
+    background: url('../images/content/background-auto.jpg')center center / cover no-repeat;
     position: fixed;
     top: 0;
     right: 0;
@@ -260,7 +367,7 @@ export default {
     width: 463px;
     height: 417px;
     background-color: #ffffff;
-    padding: 60px 80px;
+    padding: 50px 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -316,6 +423,7 @@ export default {
 
   .window__block-content {
     padding-left: 40px;
+    padding-bottom: 2px;
   }
 
   .window__block-title {

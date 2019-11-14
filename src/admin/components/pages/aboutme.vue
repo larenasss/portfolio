@@ -3,7 +3,7 @@
       .container
         .aboutme__content
           .aboutme__info
-            .aboutme__info-title Блок "Обо мне"
+            h1.aboutme__info-title Блок "Обо мне"
             .aboutme__btn(
               v-if="categoryAdd === false"
               @click="categoryAdd = true")
@@ -115,7 +115,7 @@ export default {
     padding: 15px 20px 20px 20px;
     max-width: 525px;
     height: 387px;
-    box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
+    box-shadow: 0px 0px 23px 5px rgba(0,0,0,0.15);
     background-color: #ffffff;
     margin-right: 20px;
     margin-bottom: 20px;
@@ -199,6 +199,14 @@ export default {
         border-bottom: transparent;
       }
     }
+  }
+
+  .aboutme__input-title {
+    padding: 10px 8px 9px 12px;
+    border-bottom: 1px solid #000000;
+    font-size: 18px;
+    font-weight: 600;
+    width: 243px;
   }
 
   .aboutme__item-bottom {

@@ -2,7 +2,7 @@
     li.aboutme__item
       .aboutme__desk
         label.aboutme__block(for="")
-          input.aboutme__input.aboutme__input--noborder(type="text" v-model="title" name="name" placeholder="Название")
+          input.aboutme__input.aboutme__input--noborder(type="text" v-model="title" name="name" placeholder="Название категории")
         .aboutme__item-btn
           button.aboutme__item-okey.icon__okey(
             @click="addNewCategory(); closeNewCategory()"

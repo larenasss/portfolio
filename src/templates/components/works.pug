@@ -1,13 +1,14 @@
 script(type="text/x-template")#slider-container
    .works__content
       display(
-         :works="works"
-         :current-work="currentWork"
-         @slide="handleSlide"
-         @previewClick="handlePreviewClick"
+        :works="works"
+        :current-work="currentWork"
+        @slide="handleSlide"
+        @previewClick="handlePreviewClick"
       )
       info(
-         :current-work="currentWork"
+        :current-work="currentWork"
+        :works="works"
       )
 
 
@@ -15,11 +16,11 @@ script(type="text/x-template")#slider-container
 script(type="text/x-template")#slider-display
    .works__left
       .slider
-         img(:src="currentWork.photo").slider__fullpic
+         img(src="currentWork.photo").slider__fullpic
          .slider__preview
             thumbs(
                :works="works"
-               :currentWork="currentWork"
+               :current-work="currentWork"
                @previewClick="$emit('previewClick', $event)"
             )
             btns(
@@ -36,7 +37,7 @@ script(type="text/x-template")#slider-thumbs
          @click.prevent="$emit('previewClick', work.id)"
       )
          a.previews__item-link
-            img(:src="work.photo" alt="").previews__item-pic
+            img(src="work.photo" alt="").previews__item-pic
 
 script(type="text/x-template")#slider-btns
    .slider-buttons
@@ -50,7 +51,7 @@ script(type="text/x-template")#slider-info
       )
       h3.works__text-title {{ currentWork.title }}
       .text.works__desc-text
-         p {{ currentWork.desc }}
+         p {{ currentWork.description }}
       a.works__text-link(:href="currentWork.link") Посмотреть сайт
          +icon('link', 'works__text__icon')
 

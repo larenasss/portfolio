@@ -39,7 +39,7 @@ export default {
       title: "",
       skill: {
         title: "",
-        percent: 0,
+        percent: "",
         category: this.category.id
       }
     }

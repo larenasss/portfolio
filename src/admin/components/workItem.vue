@@ -1,9 +1,9 @@
 <template lang="pug">
   li.works__item
     ul.preview
-      li.preview__item {{work.techs}}
-      li.preview__item 
-      li.preview__item 
+      img(:src="`https://webdev-api.loftschool.com/${work.photo}`").preview__pic
+      li.preview__item(v-for='tag, index in tagsArray')
+        span.preview__title {{ tag }}
     .desk
       .desk__content
         .desk__work {{work.title}}
@@ -11,7 +11,9 @@
           p {{work.description}}
         a.desk__link {{work.link}}
       .desk__btn
-        .desk__edit Править
+        button(
+          @click='editedExistedWork'
+        ).desk__edit Править
         button(
           @click="deletedExistedWork"
         ).desk__del Удалить
@@ -21,18 +23,35 @@
 <script>
 import { mapActions } from "vuex";
 export default {
+  data() {
+    return {
+      editedWork: { ...this.work },    
+    }
+  },
   props: {
-    work: Object
+    work: {
+      type: Object,
+      default: () => ({}),
+      required: true
+    },
+  },
+  computed: {
+    tagsArray() {
+      return this.work.techs.split(',')
+    }
   },
   methods:{
     ...mapActions("works", ["deleteWork"]),
-     async deletedExistedWork(work) {
+    async deletedExistedWork(work) {
      try {
        const response = await this.deleteWork(this.work.id);
      } catch (error) {
        
      }
-   },
+    },
+    editedExistedWork() {
+      this.$emit('editedExistedWork', this.editedWork)
+    }
   }
 }
 </script>

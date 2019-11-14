@@ -48,8 +48,7 @@ export default {
         
       }
     },
-    async editReview({commit}, editedReview) {
-      
+    async editReview({commit}, editedReview) { 
       try {
         const {data} = await this.$axios.post(`/reviews/${editedReview.id}`, editedReview)
         commit("EDIT_REVIEW", data.review)

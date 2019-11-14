@@ -30,7 +30,8 @@ formButton.addEventListener('click', function(e) {
          } else {
             overley.style.display = 'none';
          }
-      }); 
+      });
+      myForm.reset();
    }
 });
 

@@ -1,4 +1,5 @@
 import Vue from "vue";
+import axios from "../admin/requests";
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 import 'swiper/dist/css/swiper.css'
@@ -30,18 +31,13 @@ new Vue({
          }
       };
    },
-   methods: {
-      arrWithRequiredImages(array) {
-         return array.map(item => {
-            const requredPic = require(`../images/content/${item["author-pic"]}`);
-            item["author-pic"] = requredPic;
-
-            return item;
-         });
-      },
-   },
    created() {
-      const reviews = require("../data/reviews.json");
-      this.reviews = this.arrWithRequiredImages(reviews);
+      axios.get("https://webdev-api.loftschool.com/reviews/220").then(response => {this.reviews = response.data;});
+
+  
+    
+    
+    //const reviews = require("../data/reviews.json");
+      //this.reviews = this.arrWithRequiredImages(reviews);
    },
 });

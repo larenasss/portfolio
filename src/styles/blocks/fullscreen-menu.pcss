@@ -7,14 +7,12 @@
    height: 100vh;
    width: 35%;
    overflow: auto;
+   right: -35%;
+   transition: 1s;
 
    @include phones {
       width: 100%;
    }
-}
-
-.fullscreen-menu__nav {
-   margin-bottom: 50px;
 }
 
 .fullscreen-menu__container {
@@ -26,6 +24,7 @@
 
 .fullscreen-menu__list {
    flex-direction: column;
+   margin-bottom: 50px;
 }
 
 .fullscreen-menu__item {

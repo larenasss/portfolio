@@ -1,7 +1,7 @@
 <template lang="pug">
   li.aboutme__skills-item(v-if="editMode === false")
     .aboutme__skills-key {{ skill.title }}
-    .aboutme__skills-value  {{ skill.percent }} %
+    .aboutme__skills-value  {{ skill.percent }}
     .aboutme__skills-btn
       button.aboutme__item-edit(@click="editMode = true")
       button.aboutme__item-remove(@click="removeExistedSkill")

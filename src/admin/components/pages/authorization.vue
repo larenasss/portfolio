@@ -12,15 +12,15 @@
               input.window__input(
                 v-model="user.name" 
                 type="text", name="name" 
-                placeholder="Terminator")
+                placeholder="Login")
           label.window__block(for="")
             .window__block-content
               .window__block-title Пароль
               input.window__input(
-                type="text" 
+                type="password"
                 v-model="user.password" 
                 name="name" 
-                placeholder="••••••••••")
+                placeholder="Password")
           .window__btn
             button(
               type="submit"
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import Vuex from "vuex";
 import $axios from '../../requests';
 
 export default {

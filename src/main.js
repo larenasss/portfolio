@@ -8,5 +8,5 @@ import "./scripts/skills";
 import "./scripts/works";
 import "./scripts/reviews";
 import "./scripts/parallax";
-import "./scripts/fullscreen-menu";
 import "./scripts/form";
+import "./scripts/scroll";
