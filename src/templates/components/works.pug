@@ -16,7 +16,7 @@ script(type="text/x-template")#slider-container
 script(type="text/x-template")#slider-display
    .works__left
       .slider
-         img(src="currentWork.photo").slider__fullpic
+         img(:src="`https://webdev-api.loftschool.com/${currentWork.photo}`").slider__fullpic
          .slider__preview
             thumbs(
                :works="works"
@@ -37,7 +37,7 @@ script(type="text/x-template")#slider-thumbs
          @click.prevent="$emit('previewClick', work.id)"
       )
          a.previews__item-link
-            img(src="work.photo" alt="").previews__item-pic
+            img(:src="`https://webdev-api.loftschool.com/${work.photo}`" alt="").previews__item-pic
 
 script(type="text/x-template")#slider-btns
    .slider-buttons

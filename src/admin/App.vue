@@ -259,8 +259,12 @@ export default {
   }
 
   .form__content-works {
-    flex-direction: column;
+
+    @include tablets {
+      flex-direction: column;
     align-items: center;
+    }
+    
   }
 
   .form__row {

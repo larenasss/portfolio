@@ -20,7 +20,7 @@
                       :style="{'backgroundImage' : `url(${renderedPhoto})`}"
                     )
                   .user__link Добавить фото
-                  .input__error {{this.validation.firstError('editedReview.photo')}}
+                  .input__error(v-if="isError") {{this.validation.firstError('editedReview.photo')}}
               .form
                 .form__row
                   label.form__block(for="")
@@ -28,20 +28,20 @@
                     input.form__input(
                       v-model="editedReview.author"
                       type="text", name="name", placeholder="Новый навык")
-                    .input__error {{this.validation.firstError('editedReview.author')}}
+                    .input__error(v-if="isError")  {{this.validation.firstError('editedReview.author')}}
                   label.form__block(for="")
                     .form__block-title Должность автора
                     input.form__input(
                       v-model="editedReview.occ"
                       type="text", name="name", placeholder="Новый навык")
-                    .input__error {{this.validation.firstError('editedReview.occ')}}
+                    .input__error(v-if="isError")  {{this.validation.firstError('editedReview.occ')}}
                 .form__row.form__row--textarea
                   label.form__block.form__block--textarea(for="")
                     .form__block-title.form__block-title--textarea Отзыв
                     textarea.form__input.form__input--textarea(
                       v-model="editedReview.text"
                       name="message", placeholder="Сообщение к письму")
-                    .input__error {{this.validation.firstError('editedReview.text')}}
+                    .input__error(v-if="isError")  {{this.validation.firstError('editedReview.text')}}
                 .form__row.form__row-btn
                   button(
                     @click=" isShown = false"
@@ -94,7 +94,8 @@ export default {
       renderedPhoto: "",
       editedReview: { ...this.review },
       isEdit: false,
-      isShown: false
+      isShown: false,
+      isError: false
     }
   },
   created() {
@@ -135,10 +136,15 @@ export default {
       this.renderedPhoto = "https://webdev-api.loftschool.com/" + editedReviewItem.photo;
     },
     async addNewReview() {
-      try {
-        if (this.isEdit) {
-          this.editReview(this.editedReview);
-          this.isShown = false;
+      this.$validate().then(success =>{
+        if(!success) {
+          this.isError = true;
+          return;
+        }
+        try {
+          if (this.isEdit) {
+            this.editReview(this.editedReview);
+            this.isShown = false;
         } else {
           this.addReview(this.editedReview),
           this.isShown = false;
@@ -147,7 +153,7 @@ export default {
       } catch (error) {
       }
 
-     
+      })
     },
   
   }

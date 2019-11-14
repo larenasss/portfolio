@@ -20,6 +20,7 @@
                     :class="{filled: renderedPhoto.length}"
                     :style="{'backgroundImage' : `url(${renderedPhoto})`}"
                 )
+                .input__error(v-if="isError")  {{this.validation.firstError('editedWork.photo')}}
               .form
                 .form__row
                   label.form__block(for="")
@@ -27,24 +28,28 @@
                     input.form__input(
                       v-model="editedWork.title"
                       type="text", name="name", placeholder="Название работы")
+                    .input__error(v-if="isError")  {{this.validation.firstError('editedWork.title')}}
                 .form__row 
                   label.form__block(for="")
                     .form__block-title Ссылка
                     input.form__input(
                       v-model="editedWork.link"
                       type="text", name="name", placeholder="Ссылка")
+                    .input__error(v-if="isError")  {{this.validation.firstError('editedWork.link')}}
                 .form__row.form__row--textarea
                   label.form__block.form__block--textarea(for="")
                     .form__block-title.form__block-title--textarea Описание
                     textarea.form__input.form__input--textarea(
                       v-model="editedWork.description"
                       type="text", name="name", placeholder="Описание")
+                    .input__error(v-if="isError")  {{this.validation.firstError('editedWork.description')}}
                 .form__row
                   label.form__block(for="")
                     .form__block-title Добавление тэга
                     input.form__input(
                       v-model="editedWork.techs"
                       type="text", name="name", placeholder="HTML5, CSS3, JavaScript")
+                    .input__error(v-if="isError")  {{this.validation.firstError('editedWork.techs')}}
                 .works__right-tags
                   ul.tags
                     li.tags__item(v-for='tag, index in tagsArray')
@@ -75,9 +80,28 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import { Validator } from "simple-vue-validator"
 export default {
   components: {
     workItem: () => import('../workItem'),
+  },
+  mixins: [require('simple-vue-validator').mixin],
+  validators: {
+    'editedWork.title'(value) {
+      return Validator.value(value).required("Добавьте назавание")
+    },
+    'editedWork.techs'(value) {
+      return Validator.value(value).required("Добавьте навыки")
+    },
+    'editedWork.photo'(value) {
+      return Validator.value(value).required("Добавьте фото")
+    },
+    'editedWork.link'(value) {
+      return Validator.value(value).required("Добавьте ссылку")
+    },
+    'editedWork.description'(value) {
+      return Validator.value(value).required("Добавьте описание")
+    }
   },
   data() {
     return {
@@ -91,7 +115,8 @@ export default {
       renderedPhoto: '',
       editedWork: { ...this.work },
       isEdit: false,
-      isShown: false
+      isShown: false,
+      isError: false
     }
   },
   created() {
@@ -134,11 +159,16 @@ export default {
       this.editedWork = editedWorkItem;
       this.renderedPhoto = "https://webdev-api.loftschool.com/" + editedWorkItem.photo;
     },
-     async addNewWork() {
-      try {
-        if (this.isEdit) {
-          this.editWork(this.editedWork);
-          this.isShown = false;
+    async addNewWork() {
+      this.$validate().then(success =>{
+        if(!success) {
+          this.isError = true;
+          return;
+        }
+        try {
+          if (this.isEdit) {
+            this.editWork(this.editedWork);
+            this.isShown = false;
         } else {
           this.addWork(this.editedWork),
           this.isShown = false;
@@ -146,6 +176,8 @@ export default {
         }
       } catch (error) {
       }
+
+      })
     },
     deleteTag(index) {
       let editedTechsArr = this.editedWork.techs.split(',')

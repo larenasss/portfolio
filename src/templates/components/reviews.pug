@@ -11,7 +11,7 @@ script(type="text/x-template")#reviews
                .text.reviews__item-text
                   p {{ review.text }}
                .item-info
-                  img(:src="picture").item-info__pic
+                  img(:src="`https://webdev-api.loftschool.com/${review.photo}`").item-info__pic
                   .item-info__content
                      .item-info__title
                         h3 {{ review.author }}
