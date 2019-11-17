@@ -15,7 +15,7 @@ export default {
         work => work.id !== removedWorkId
       );
     },
-    EDIT_REVIEW(state, editWorkId) {
+    EDIT_WORK(state, editWorkId) {
       state.works = state.works.map(work =>
         work.id === editWorkId.id ? editWorkId : work
       )
@@ -52,7 +52,7 @@ export default {
     },
     async editWork({commit}, editedWork) { 
       try {
-        const {data} = await this.$axios.post(`/reviews/${editedWork.id}`, editedWork)
+        const {data} = await this.$axios.post(`/works/${editedWork.id}`, editedWork)
         commit("EDIT_WORK", data.work)
       } catch (error) {
         

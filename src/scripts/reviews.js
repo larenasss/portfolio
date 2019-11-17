@@ -32,7 +32,7 @@ new Vue({
       };
    },
    created() {
-      axios.get("https://webdev-api.loftschool.com/reviews/220").then(response => {this.reviews = response.data;});
+      axios.get("https://webdev-api.loftschool.com/reviews/220").then(response => {this.reviews = response.data});
 
   
     

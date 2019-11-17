@@ -18,12 +18,12 @@ const btns = {
 const display = {
    template: "#slider-display",
    components: { thumbs, btns },
-   props: ["works", "currentWork"]
+   props: ["works", "currentWork", "currentIndex"]
 }
 
 const tags = {
    template: "#slider-tags",
-   props: ["tags"]
+   props: ["tagsArray", "currentWork"]
 }
 
 const info = {
@@ -32,8 +32,7 @@ const info = {
    props: ["currentWork"],
    computed: {
       tagsArray() {
-        //return this.currentWork.techs.split(',').filter(el => el.trim())
-        
+        return this.currentWork.techs.split(", ");
       }
    }
 }
@@ -44,7 +43,7 @@ new Vue ({
    components: { display, info },
    data: () => ({
       works: [],
-      currentIndex: 0
+      currentIndex: 0,
    }),
    computed: {
       currentWork() {
@@ -53,8 +52,9 @@ new Vue ({
    },
    watch: {
       currentIndex(value) {
-         if (value < 0) this.currentIndex = this.works.length -1;
-         if (value > this.works.length - 1) this.currentIndex = 0;
+        const workAmount = this.works.length - 1;
+        if (value < 0) this.currentIndex = workAmount;
+        if (value > workAmount) this.currentIndex = 0;
       }
    },
    methods: {
@@ -74,5 +74,7 @@ new Vue ({
    },
    created() {
       axios.get("https://webdev-api.loftschool.com/works/220").then(response => {this.works = response.data});
+
+      
    }
 });
