@@ -3,6 +3,6 @@
 
 Ссылка на сайт => https://larenasss.github.io/portfolio/dist
 
-Ссылка на админку => https://larenasss.github.io/portfolio/dist/admin/#/login
+Ссылка на админку => https://larenasss.github.io/portfolio/dist/admin
 Логин: butriy-102019
 Пароль: K@pitoshka
