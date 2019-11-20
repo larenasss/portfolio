@@ -8,12 +8,12 @@ script(type="text/x-template")#reviews
       swiper.reviews__list(:options="swiperOptions" ref="mySwiper")
          swiper-slide.reviews__item(v-for="review in reviews" :key="review.id")
             .reviews__item-content
-               .text.reviews__item-text
+              .item-info
+                img(:src="`https://webdev-api.loftschool.com/${review.photo}`").item-info__pic
+                .item-info__content
+                   .item-info__title
+                      h3 {{ review.author }}
+                   .item-info__subtitle 
+                      h4 {{ review.occ }}
+              .text.reviews__item-text
                   p {{ review.text }}
-               .item-info
-                  img(:src="`https://webdev-api.loftschool.com/${review.photo}`").item-info__pic
-                  .item-info__content
-                     .item-info__title
-                        h3 {{ review.author }}
-                     .item-info__subtitle 
-                        h4 {{ review.occ }}

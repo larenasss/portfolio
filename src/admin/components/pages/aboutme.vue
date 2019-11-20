@@ -63,6 +63,7 @@ export default {
  .aboutme {
     background-color: #f7f9fe;
     padding-bottom: 40px;
+    height: 100vh;
   }
 
   .aboutme__info {
