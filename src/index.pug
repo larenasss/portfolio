@@ -207,11 +207,19 @@ html(lang="en")
               .footer__content
                 .footer__menu
                   nav.menu
-                      - var menu = ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться']
-                      ul.menu__list
-                        each item in menu
-                          li.menu__item
-                            a(href="#").menu__link #{item}
+                    ul.menu__list
+                      li.menu__item
+                        a(href="#sr1").menu__link.scroll-to Главная
+                      li.menu__item
+                        a(href="#sr2").menu__link.scroll-to Обо мне
+                      li.menu__item
+                        a(href="#sr3").menu__link.scroll-to Навыки
+                      li.menu__item
+                        a(href="#sr4").menu__link.scroll-to Работы
+                      li.menu__item
+                        a(href="#sr5").menu__link.scroll-to Отзывы
+                      li.menu__item
+                        a(href="#sr6").menu__link.scroll-to Связаться
                 .footer__links
                   .footer__socials
                     .text.footer__social-text
