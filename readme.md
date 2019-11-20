@@ -1,32 +1,8 @@
 Исполнитель: Бутрий Алексей
 Дата: 08.10.2019 - 13.11.2019
 
-# Учебный шаблон проекта Portfolio
+Ссылка на сайт => https://larenasss.github.io/portfolio/dist
 
-> Перед установкой зависимостей и запуском проекта убедитесь, что у вас установлена [последняя версия Node.js & NPM](https://nodejs.org/en/download/current/), а так же 
-[последняя версия Yarn](https://yarnpkg.com/ru/docs/install)
-
-##  Чтобы развернуть проект необходимо:
-```sh
-$ git clone git clone https://github.com/loftschool/ls-advanced-portfolio.git
-$ cd ls-advanced-portfolio
-$ yarn
-```
-
-## Скрипты package.json:
-
-| Скрипт | Назначение |
-| ------ | ------ |
-| dev | Запустит webpack-dev-server с _горячей_ заменой модулей |
-| build | Соберет проект для **production** (проект готов к загрузке на сервер) |
-| reg | Консольная утилита для регистрации. Использовать перед началом работы над **админ-панелью**. |
-
-#### Чтобы запустить скрипт:
-```sh
-$ npm run имя_скрипта
-```
-
-##### Либо:
-```sh
-$ yarn имя_скрипта
-```
+Ссылка на админку => https://larenasss.github.io/portfolio/dist/admin/#/login
+Логин: butriy-102019
+Пароль: K@pitoshka

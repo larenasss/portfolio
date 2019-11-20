@@ -3,22 +3,28 @@
       .container
         .aboutme__content
           .aboutme__info
-            .aboutme__info-title Блок "Обо мне"
-            .aboutme__btn
+            h1.aboutme__info-title Блок "Обо мне"
+            .aboutme__btn(
+              v-if="categoryAdd === false"
+              @click="categoryAdd = true")
               button.icon-add.aboutme__icon-add
               a.aboutme__btn-link Добавить группу
         ul.aboutme__list
-          skillsAdd
+          categoryAdd(
+            v-if="categoryAdd"
+            @closeNewCategory="closeNewCategory"
+            :category="category"
+          )
           li.aboutme__item(v-for="category in categories" :key="category.id")
-            skillsItem(
+            categoryItem(
               :category="category"
             )
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
-import skillsAdd from '../slillsAdd';
-import skillsItem from '../skillsItem';
+import categoryAdd from '../categoryAdd';
+import categoryItem from '../categoryItem';
 import { objectExpression } from 'babel-types';
 
 
@@ -27,10 +33,11 @@ export default {
     category: Object
   },
   components: {
-    skillsItem,
-    skillsAdd
+    categoryItem,
+    categoryAdd
   },
   data: () => ({
+    categoryAdd: false,
     title: ""
   }),
   created() {
@@ -42,20 +49,9 @@ export default {
     })
   },
   methods: {
-    ...mapActions("categories", ["addCategory", "fetchCategories", "deleteCategories"]),
-    async removeCategory(category) {
-      try {
-        const response = await this.deleteCategories(this.category.id);
-      } catch (error) {
-      }
-    },
-    async addNewCategory() {
-      try {
-        await this.addCategory(this.title);
-      } catch (error) {
-        alert(error.message);
-      }
-      
+    ...mapActions("categories", ["fetchCategories"]),
+    closeNewCategory() {
+      this.categoryAdd = false;
     }
   }
 }
@@ -105,6 +101,7 @@ export default {
   .aboutme__list {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     @include phones {
       flex-direction: column;
@@ -117,13 +114,14 @@ export default {
     justify-content: space-between;
     padding: 15px 20px 20px 20px;
     max-width: 525px;
-    width: 48%;
     height: 387px;
-    box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
+    box-shadow: 0px 0px 23px 5px rgba(0,0,0,0.15);
     background-color: #ffffff;
     margin-right: 20px;
-
-    &:last-child {
+    margin-bottom: 20px;
+    width: 48%;
+  
+    &:nth-child(even){
       margin-right: 0;
     }
 
@@ -144,6 +142,15 @@ export default {
 
   .aboutme__item-edit {
     background: svg-load('pencil.svg', fill=#414c63, width=100%, height=100%);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 15px;
+    opacity: 0.5;
+    margin-right: 20px;
+  }
+
+  .aboutme__item-remove {
+    background: svg-load('trash.svg', fill=#414c63, width=100%, height=100%);
     background-repeat: no-repeat;
     width: 16px;
     height: 15px;
@@ -179,7 +186,6 @@ export default {
 
   .aboutme__input {
     padding: 12px 8px 12px 12px;
-    font-size: 18px;
     font-weight: 600;
     border-bottom: 1px solid #000000;
 
@@ -194,11 +200,26 @@ export default {
     }
   }
 
+  .aboutme__input-title {
+    padding: 10px 8px 9px 12px;
+    border-bottom: 1px solid #000000;
+    font-size: 18px;
+    font-weight: 600;
+    width: 243px;
+  }
+
   .aboutme__item-bottom {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     position: relative;
+
+    &.blocked {
+      opacity: .5;
+      filter: grayscale(100%);
+      pointer-events: none;
+      user-select: none;
+    }
   }
 
   .aboutme__input-interest {
@@ -227,39 +248,19 @@ export default {
   .aboutme__skills-item {
     position: relative;
     display: flex;
-    margin-bottom: 25px;
+    margin-bottom: 28px;
+    justify-content: space-between;
 
     &:last-child {
       margin-bottom: 0;
     }
-
-    &::after {
-      content: "";
-      opacity: .5;
-      position: absolute;
-      top: 3px;
-      right: 40px;
-      background: svg-load('pencil.svg', fill=#414c63, width=100%, height=100%);
-      background-repeat: no-repeat;
-      width: 16px;
-      height: 15px;
-    }
-
-    &::before {
-      content: "";
-      opacity: .5;
-      position: absolute;
-      top: 3px;
-      right: 10px;
-      background: svg-load('trash.svg', fill=#414c63, width=100%, height=100%);
-      background-repeat: no-repeat;
-      width: 13px;
-      height: 15px;
-    }
+  }
+  .aboutme__skills-key {
+    flex: .6;
+    padding-left: 12px;
   }
 
   .aboutme__skills-value {
-    position: absolute;
     right: 100px;
   }
 

@@ -1,13 +1,9 @@
 import Vue from "vue";
+import axios from "../admin/requests";
 
 const thumbs = {
    template: "#slider-thumbs",
-   props: ["works", "currentWork"],
-   computed: {
-      reversedWorks() {
-         return [...this.works].reverse();
-      }
-   }
+   props: ["works", "currentWork", "currentIndex"]
 }
 
 const btns = {
@@ -17,12 +13,12 @@ const btns = {
 const display = {
    template: "#slider-display",
    components: { thumbs, btns },
-   props: ["works", "currentWork"]
+   props: ["works", "currentWork", "currentIndex"]
 }
 
 const tags = {
    template: "#slider-tags",
-   props: ["tags"]
+   props: ["tagsArray"]
 }
 
 const info = {
@@ -31,7 +27,7 @@ const info = {
    props: ["currentWork"],
    computed: {
       tagsArray() {
-         return this.currentWork.skills.split(', ');
+        return this.currentWork.techs.split(", ");
       }
    }
 }
@@ -42,27 +38,20 @@ new Vue ({
    components: { display, info },
    data: () => ({
       works: [],
-      currentIndex: 0
+      currentIndex: 0,
    }),
    computed: {
       currentWork() {
-         return this.works[this.currentIndex];
+        return this.works[this.currentIndex];
       },
    },
    watch: {
       currentIndex(value) {
-         if (value < 0) this.currentIndex = this.works.length -1;
-         if (value > this.works.length - 1) this.currentIndex = 0;
+        if (value < 0) this.currentIndex = this.works.length - 1;
+        if (value > this.works.length - 1) this.currentIndex = 0;
       }
    },
    methods: {
-      makeArrayRequiredImages(data) {
-         return data.map(item => {
-            const requirePic = require(`../images/content/slider/${item.photo}`);
-            item.photo = requirePic;
-            return item;
-         });
-      },
       handleSlide(direction) {
          switch(direction) {
             case "next" :
@@ -74,11 +63,13 @@ new Vue ({
          }
       },
       handlePreviewClick(previewId) {
-           this.currentIndex = previewId - 1;
-       }
+        this.currentIndex = previewId
+        
+      }
    },
    created() {
-      const data = require('../data/works.json');
-      this.works = this.makeArrayRequiredImages(data);
+      axios.get("https://webdev-api.loftschool.com/works/220").then(response => {this.works = response.data});
+
+      
    }
 });

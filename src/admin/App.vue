@@ -8,7 +8,7 @@
 <script>
 import header_auto from './components/header-auto.vue';
 import menu_auto from './components/menu.vue';
-
+import store from "./store"
 export default {
   name: 'app',
   components: {
@@ -17,6 +17,7 @@ export default {
   },
   data () {
     return {
+      
     }
   }
 }
@@ -59,8 +60,8 @@ export default {
   .icon-add {
     position: relative;
     border-radius: 50%;
-    width: 21px;
-    height: 21px;
+    width: 22px;
+    height: 22px;
     background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
 
     &:before {
@@ -191,7 +192,6 @@ export default {
 
   .nav__list {
     display: flex;
-    padding: 0 30px;
 
     @include phones {
       justify-content: center;
@@ -218,6 +218,10 @@ export default {
     &:before {
       content:attr(data-text);
     }
+  
+    @include phones {
+      padding: 5px 20px;
+    }
   }
 
   .router-link-exact-active {
@@ -226,69 +230,103 @@ export default {
   }
 
 
-  // Обо мне
+  // Форма
 
- 
-  // Работы
-
-  .works{
-    background-color: #f7f9fe;
-  }
-
-  .works__content {
-    background-color: #ffffff;
-    width: 100%;
-    padding: 3%;
-    margin-bottom: 40px;
-
-    @include phones {
-      padding: 4% 6%;
-    }
-  }
-
-  .works__info {
-    display: flex;
-    
-    @include tablets {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-
-  .works__info-title {
-    padding-bottom: 3%;
-    margin-bottom: 40px;
-    border-bottom: 1px solid black;
-    font-size: 18px;
-    font-weight: 700;
-  }
-
-  .works__left {
-    width: 50%;
-    height: 276px;
-    border: 1px dashed #a1a1a1;
-    background-color: #dee4ed;
-    padding: 7% 13% 5%;
-    text-align: center;
-    margin-right: 25px;
+  .form {
+    width: 60%;
 
     @include tablets {
-      margin-right: 0;
-      margin-bottom: 40px;
       width: 70%;
     }
+    @include phones {
+      width: 100%;
+    }
+  }
+
+  .form__title {
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 3%;
+    box-shadow: 0 4px 2px -2px gray;
+  }
+
+  .form__content {
+    display: flex;
+    margin-top: 4%;
 
     @include phones {
       width: 100%;
     }
   }
 
-  .works__left-content {
-    margin-bottom: 15px;
-    line-height: 33.89px;
+  .form__content-works {
+
+    @include tablets {
+      flex-direction: column;
+    align-items: center;
+    }
+    
   }
 
-  .works__button, .reviews__button, .window__button {
+  .form__row {
+    display: flex;
+  }
+
+  .form__block-title {
+    opacity: .5;
+
+    &--textarea {
+      margin-bottom: 20px;
+    }
+  }
+
+  .form__block {
+    border-bottom: 1px solid black;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    position: relative;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @include phones {
+      width: 100%;
+    }
+
+    &--textarea {
+      border-bottom: none;
+    }
+  }
+
+
+
+  .form__input {
+    padding: 20px 2px;
+    font-weight: 700;
+    width: 100%;
+
+    &--textarea {
+      width: 100%;
+      height: 100px;
+      resize: none;
+      padding: 10px; 
+    }
+  }
+
+  .form__row-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .form__row-link {
+    margin-right: 40px;
+    color: #383bcf;
+  }
+
+  .form__row-button, .window__button {
     width: 181px;
     height: 50px;
     border-radius: 25px;
@@ -299,502 +337,20 @@ export default {
     font-weight: 700;
   }
 
-  .works__right {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-
-    @include tablets {
-      width: 70%;
-    }
-
-    @include phones {
-      width: 100%;
-    }
-  }
-
-  .works__right-btn, .reviews__desk-btn {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .works__right-btn {
-    @include tablets {
-      justify-content: center;
-    }
-  }
-
-  .works__right-link, .reviews__desk-link {
-    margin-right: 40px;
-    color: #383bcf;
-  }
-
-  .works__block {
-    border-bottom: 1px solid black;
-    margin-bottom: 25px;
-
-    &--textarea {
-      border-bottom: none;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .works__block-title {
-    opacity: .5;
-
-    &--textarea {
-      margin-bottom: 10px;
-    } 
-  }
-
-  .works__input {
-    padding: 14px 0;
-    font-size: 18px;
-
-    &--textarea {
-      width: 100%;
-      height: 150px;
-      resize: none;
-      padding: 10px; 
-    }
-  }
-
-  .works__right-tags {
-    margin-bottom: 40px;
-  }
-
-  .tags {
-    display: flex;
-  }
-
-  .tags__item {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-    padding: 1% 3%;
-    background-color: #f4f4f4;
-    border-radius: 15px;
-    opacity: 0.7;
-  }
-
-  .tags-icon__close {
-    height: 11px;
-    margin-left: 5px;
-  }
-
-  .tags-icon__close:before,
-  .tags-icon__close:after {
-    content: "";
+  .input__error {
     position: absolute;
-    top: 40%;
-    width: 12px;
-    height: 2px;
-    background-color: #414c63;
-  }
-
-  .works__items,.reviews__items {
-    @include phones {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-
-  .works__item {
-    margin-bottom: 40px;
-  }
-
-  .works__add, .reviews__add {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 340px;
-    height: 556px;
-    background-color: #ffffff;
-    background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
-    margin-right: 40px;
-
-    @include phones {
-      margin-right: 0;
-      margin-bottom: 20px;
-      height: 111px;
-      width: 100%;
-      flex-direction: row;
-      justify-content: flex-start;
-      padding: 0 5%;
-    }
-  }
-
-  .reviews__add {
-    width: 340px;
-    height: 380px;
-
-    @include phones {
-      height: 111px;
-      width: 100%;
-    }
-  }
-
-  .works__add-btn, .reviews__add-btn {
-    width: 150px;
-    height: 150px;
-    border: 2px solid #ffffff;
-    border-radius: 50%;
-    position: relative;
-    margin-bottom: 20px;
-
-     &:before {
-      content: "";
-      position: absolute;
-      background-color: #ffffff;
-      width: 30px;
-      height: 2px;
-      top: 50%;
-      left: 50%;
-      transform:translate(-50%, -50%);
-    }
-
-    &:after {
-      content: "";
-      position: absolute;
-      background-color: #ffffff;
-      width: 2px;
-      height: 30px;
-      top: 50%;
-      left: 50%;
-      transform:translate(-50%, -50%);
-    }
-
-    @include phones {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 0;
-      margin-right: 20px;
-
-      &:before {
-      width: 20px;
-      height: 2px;
-      top: 50%;
-      left: 50%;
-      transform:translate(-50%, -50%);
-      }
-
-      &:after {
-      width: 2px;
-      height: 20px;
-      top: 50%;
-      left: 50%;
-      transform:translate(-50%, -50%);
-      }
-    }
-  }
-
-  .works__add-desk, .reviews__add-desk {
-    color: #ffffff;
-  }
-
-  .works__items, .reviews__items {
-    display: flex;
-  }
-
-  .works__item {
-    width: 340px;
-    height: 556px;
-    background-color: #ffffff;
-
-    @include phones {
-      width: 100%;
-    }
-  }
-
-  .preview {
-    background: url("../images/content/slider/slider_1.jpg")center center / cover no-repeat;
-    width: 100%;
-    height: 30%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: 2%;
-  }
-
-  .preview__item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1% 4%;
-    border-radius: 15px;
-    background-color: #ffffff;
-    margin-right: 10px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
-  .desk {
-    padding: 40px 20px;
-    display: flex;
-    height: 70%;
-    flex-direction: column;
-    justify-content: space-between;
-
-    @include phones {
-      padding: 40px;
-    }
-  }
-
-  .desk__work, .desk__info {
-    margin-bottom: 30px;
-  }
-
-  .desk__work {
-    font-size: 18px;
-    font-weight: 700;
-  }
-
-  .desk__link {
-    color: #383bcf;
-  }
-
-  .desk__btn, .reviews__btn {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .desk__edit,.desk__del, .reviews__edit, .reviews__del  {
-    width: 105px;
-  }
-
-  .desk__edit, .reviews__edit {
-    position: relative;
-
-    &:after {
-      content: "";
-      top: 4px;
-      right: 10px;
-      position: absolute;
-      background: svg-load('pencil.svg', fill=#383bcf, width=100%, height=100%);
-      width: 17px;
-      height: 17px;
-    }
-  }
-
-  .desk__del, .reviews__del {
-     position: relative;
-  }
-
-  .desk-icon__close, .reviews-icon__close {
-    position: absolute;
-    top: 4px;
-    right: 10px;
-    width: 15px;
-    height: 15px;
-  }
-
-  .desk-icon__close:before,
-  .desk-icon__close:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 18px;
-    height: 3px;
-    background-color: #bf2929;
-  }
-  
-  .reviews-icon__close:before,
-  .reviews-icon__close:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 18px;
-    height: 3px;
-    background-color: #bf2929;
-  }
-
- 
-
-  .reviews {
-    padding-bottom: 40px;
-    background-color: #f7f9fe;
-  }
-
-  .reviews__content {
-    background-color: #ffffff;
-    padding: 3%;
-    margin-bottom: 40px;
-
-    @include phones {
-      padding: 5%;
-    }
-  }
-
-  .reviews__title {
-    padding-bottom: 3%;
-    font-size: 1.125rem;
-    font-weight: 700;
-    margin-bottom: 40px;
-    border-bottom: 1px solid black;
-  }
-
-  .reviews__info {
-    display: flex;
-
-    @include phones {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-
-  .reviews__desk {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-
-    @include phones {
-      width: 100%;
-    }
-  }
-
-  .user {
     text-align: center;
-    margin-right: 40px;
-
-    @include phones {
-      margin-right: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-  }
-
-  .user__img {
-    width: 200px;
-    height: 200px;
-    background-color: #dee4ed;
-    border-radius: 50%;
-    position: relative;
-    margin-bottom: 40px;
-    
-
-    &:before {
-      position: absolute;
-      content: "";
-      background: svg-load('user.svg', fill=#ffffff, width=100%, height=100%);
-      background-repeat: no-repeat;
-      background-position:center;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 85px;
-      height: 113px;
-    }
-  }
-
-  .user__link {
-    color: #383bcf;
-  }
-
-  .reviews__desk-title--textarea {
-    margin-bottom: 20px;
-  }
-
-  .reviews__desk-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-
-    @include tablets {
-      flex-direction: column;
-    }
-  }
-
-  .reviews__desk-content {
-    border-bottom: 1px solid black;
-    width: 48%;
-    margin-bottom: 20px;
-
-    @include tablets {
-      width: 80%;
-    }
-
-    @include phones {
-      width: 100%;
-    }
-
-    &--textarea {
-      width: 100%;
-      border-bottom: none;
-    }
-  }
-
-  .reviews__desk-title {
-    opacity: .5;
-  }
-
-  .reviews__input {
-    padding: 20px 0;
-
-    &--textarea {
-      width: 100%;
-      height: 100px;
-      resize: none;
-      padding: 10px; 
-    }
-  }
-
-  .reviews__item {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 340px;
-    height: 380px;
-    background-color: #ffffff;
-    padding: 30px;
-
-    @include phones {
-      width: 100%;
-    }
-  }
-
-  .reviews__user {
-    display: flex;
-    padding-bottom: 10px;
-    border-bottom: 1px solid black;
-    margin-bottom: 40px;
-  }
-
-  .reviews__user-pic {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 20px;
-  }
-
-  .reviews__user-name {
-    font-size: 18px;
-    font-weight: 700;
-  }
-
-  .reviews__user-pos {
-    opacity: 0.5; 
-  }
-
-  .reviews__text {
-    opacity: 0.7;
-    flex: 1;
+    font-size: 12px;
+    width: 100%;
+    bottom: -18px;
+    left: 0;
+    color: firebrick; 
   }
 
   .authorization {
     width: 100%;
     height: 100vh;
-    background: url('../images/content/background.png')center center / cover no-repeat;
+    background: url('../images/content/background-auto.jpg')center center / cover no-repeat;
     position: fixed;
     top: 0;
     right: 0;
@@ -816,7 +372,7 @@ export default {
     width: 463px;
     height: 417px;
     background-color: #ffffff;
-    padding: 60px 80px;
+    padding: 50px 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -868,19 +424,37 @@ export default {
       width: 26px;
       height: 30px;
     }
+
+    &--password {
+      &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      background: svg-load('key.svg', fill=#414c63, width=100%, height=100%);
+      background-repeat: no-repeat;
+      opacity: .3;
+      width: 26px;
+      height: 30px;
+    }
+    }
   }
 
   .window__block-content {
     padding-left: 40px;
+    padding-bottom: 2px;
   }
 
   .window__block-title {
     opacity: .3;
-    padding-bottom: 10px;
   }
 
   .window__input {
     padding: 10px 0;
+
+     &.error {
+      border-bottom: 1px solid red;
+    }
 
     &::placeholder {
       color: #414c63;
@@ -903,6 +477,48 @@ export default {
     width: 20px;
     height: 3px;
     background-color: #414c63;
+  }
+
+  .modal__error {
+    background-color: #2d3c4e;
+    opacity: .8;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0
+  }
+
+  .modal__window {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 391px;
+    height: 75px;
+    background-color: #b13333;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    padding: 10px 20px;
+  }
+
+  .modal__close {
+    top: 10px;
+    right: 20px;
+    position: absolute;
+
+  }
+
+  .modal__close:before,
+  .modal__close:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 3px;
+    background-color: #ffffff;
   }
 
 </style>
