@@ -1,5 +1,5 @@
 script(type="text/x-template")#slider-container
-   .works__content
+   .works__content(v-if="works.length > 0")
       display(
         :works="works"
         :currentWork="currentWork"
@@ -15,33 +15,38 @@ script(type="text/x-template")#slider-container
 
 script(type="text/x-template")#slider-display
    .works__left
-      .slider(:data-slide="currentIndex + 1")
-         img(:src="`https://webdev-api.loftschool.com/${currentWork.photo}`").slider__fullpic
-         .slider__preview
-            thumbs(
-               :works="works"
-               :currentWork="currentWork"
-               @previewClick="$emit('previewClick', $event)"
-            )
-            btns(
-               @slide="$emit('slide', $event)"
-            )
-
-script(type="text/x-template")#slider-btns
-  .slider-buttons
-    button(@click.prevent="$emit('slide', 'prev')").slider-buttons__item.slider-buttons__item--slide--prev
-    button(@click.prevent="$emit('slide', 'next')").slider-buttons__item.slider-buttons__item--slide--next      
+      .slider(
+        :data-slide="currentIndex + 1"
+        
+      )
+        img(:src="`https://webdev-api.loftschool.com/${currentWork.photo}`").slider__fullpic
+        .slider__preview
+           thumbs(
+              :works="works"
+              :currentIndex="currentIndex"
+              :currentWork="currentWork"
+              @previewClick="$emit('previewClick', $event)"
+           )
+           btns(
+              @slide="$emit('slide', $event)"
+           )   
 
 script(type="text/x-template")#slider-thumbs
    ul.previews
       li.previews__item(
-         v-for="work in reversedWorks" 
-         :key="work.id" 
-         :class="{active: currentWork.id === work.id}"
-         @click="$emit('previewClick', work.id)"
+        v-for="(work, index) in works" 
+        :key="work.id"
+        :class="{active: work.id === currentWork.id}"
+        @click.prevent="$emit('previewClick', index)"
       )
         a.previews__item-link
           img(:src="`https://webdev-api.loftschool.com/${work.photo}`" alt="").previews__item-pic
+
+
+script(type="text/x-template")#slider-btns
+  .slider-buttons
+    button(@click.prevent="$emit('slide', 'prev')").slider-buttons__item.slider-buttons__item--slide--prev
+    button(@click.prevent="$emit('slide', 'next')").slider-buttons__item.slider-buttons__item--slide--next   
 
 script(type="text/x-template")#slider-info      
   .works__right
@@ -57,4 +62,4 @@ script(type="text/x-template")#slider-info
 script(type="text/x-template")#slider-tags
   .works__tags
     ul.tags
-      li.tags__item(v-for="tag in tagsArray" :key="tag") {{ tag }}
+      li.tags__item(v-for="tag in tagsArray" :key="tag.id") {{ tag }}

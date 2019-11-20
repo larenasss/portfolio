@@ -18,8 +18,11 @@ export default {
     EDIT_CATEGORY(state, editedCategory) {
       
     state.categories = state.categories.map(category =>
-        category.id === editedCategory.id ? editedCategory : category
-      );
+      category.id === editedCategory.id ? editedCategory : category
+    );
+      
+
+
     },
     ADD_SKILL(state, newSkill) {
       state.categories = state.categories.map(category => {
@@ -70,9 +73,7 @@ export default {
            const { data } = await this.$axios.post("/categories", {title});
            commit("ADD_CATEGORY", data)
         } catch (error) {
-           throw new Error(
-              error.response.data.error || error.response.data.message
-           );  
+          
         }
       },
       async fetchCategories({ commit }) {

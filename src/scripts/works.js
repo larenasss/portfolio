@@ -3,12 +3,7 @@ import axios from "../admin/requests";
 
 const thumbs = {
    template: "#slider-thumbs",
-   props: ["works", "currentWork"],
-   computed: {
-      reversedWorks() {
-         return [...this.works].reverse();
-      }
-   }
+   props: ["works", "currentWork", "currentIndex"]
 }
 
 const btns = {
@@ -23,7 +18,7 @@ const display = {
 
 const tags = {
    template: "#slider-tags",
-   props: ["tagsArray", "currentWork"]
+   props: ["tagsArray"]
 }
 
 const info = {
@@ -47,14 +42,13 @@ new Vue ({
    }),
    computed: {
       currentWork() {
-         return this.works[this.currentIndex];
+        return this.works[this.currentIndex];
       },
    },
    watch: {
       currentIndex(value) {
-        const workAmount = this.works.length - 1;
-        if (value < 0) this.currentIndex = workAmount;
-        if (value > workAmount) this.currentIndex = 0;
+        if (value < 0) this.currentIndex = this.works.length - 1;
+        if (value > this.works.length - 1) this.currentIndex = 0;
       }
    },
    methods: {
@@ -69,7 +63,8 @@ new Vue ({
          }
       },
       handlePreviewClick(previewId) {
-        this.currentIndex = previewId - 1;
+        this.currentIndex = previewId
+        
       }
    },
    created() {

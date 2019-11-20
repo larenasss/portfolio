@@ -1,11 +1,11 @@
 export default {
   namespaced: true,
   state: {
-    reviews: []
+    reviews: [],
   },
   mutations: {
-    SET_REVIEW(state, review) {
-      state.reviews = review;
+    SET_REVIEW(state, reviews) {
+      state.reviews = reviews;
     },
     ADD_REVIEW(state, review) {
       state.reviews.push(review);
@@ -15,9 +15,9 @@ export default {
         review => review.id !== removedReviewId
       );
     },
-    EDIT_REVIEW(state, editReviewId) {
+    EDIT_REVIEW(state, editedReview) {
       state.reviews = state.reviews.map(review =>
-         review.id === editReviewId.id ? editReviewId : review
+        review.id === editedReview.id ? editedReview : review
       )
     }
   },
@@ -49,8 +49,14 @@ export default {
       }
     },
     async editReview({commit}, editedReview) { 
+      const formDataReview = new FormData();
+
+      formDataReview.append('author', editedReview.author);
+      formDataReview.append('occ', editedReview.occ);
+      formDataReview.append('photo', editedReview.photo);
+      formDataReview.append('text', editedReview.text);
       try {
-        const {data} = await this.$axios.post(`/reviews/${editedReview.id}`, editedReview)
+        const {data} = await this.$axios.post(`/reviews/${editedReview.id}`, formDataReview)
         commit("EDIT_REVIEW", data.review)
       } catch (error) {
         

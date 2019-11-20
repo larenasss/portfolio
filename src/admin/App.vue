@@ -8,7 +8,7 @@
 <script>
 import header_auto from './components/header-auto.vue';
 import menu_auto from './components/menu.vue';
-
+import store from "./store"
 export default {
   name: 'app',
   components: {
@@ -17,6 +17,7 @@ export default {
   },
   data () {
     return {
+      
     }
   }
 }
@@ -423,6 +424,20 @@ export default {
       width: 26px;
       height: 30px;
     }
+
+    &--password {
+      &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      background: svg-load('key.svg', fill=#414c63, width=100%, height=100%);
+      background-repeat: no-repeat;
+      opacity: .3;
+      width: 26px;
+      height: 30px;
+    }
+    }
   }
 
   .window__block-content {
@@ -432,11 +447,14 @@ export default {
 
   .window__block-title {
     opacity: .3;
-    padding-bottom: 10px;
   }
 
   .window__input {
     padding: 10px 0;
+
+     &.error {
+      border-bottom: 1px solid red;
+    }
 
     &::placeholder {
       color: #414c63;
@@ -459,6 +477,48 @@ export default {
     width: 20px;
     height: 3px;
     background-color: #414c63;
+  }
+
+  .modal__error {
+    background-color: #2d3c4e;
+    opacity: .8;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0
+  }
+
+  .modal__window {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 391px;
+    height: 75px;
+    background-color: #b13333;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    padding: 10px 20px;
+  }
+
+  .modal__close {
+    top: 10px;
+    right: 20px;
+    position: absolute;
+
+  }
+
+  .modal__close:before,
+  .modal__close:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 3px;
+    background-color: #ffffff;
   }
 
 </style>

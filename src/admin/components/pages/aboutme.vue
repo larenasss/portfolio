@@ -186,7 +186,6 @@ export default {
 
   .aboutme__input {
     padding: 12px 8px 12px 12px;
-    font-size: 18px;
     font-weight: 600;
     border-bottom: 1px solid #000000;
 
@@ -249,7 +248,7 @@ export default {
   .aboutme__skills-item {
     position: relative;
     display: flex;
-    margin-bottom: 25px;
+    margin-bottom: 28px;
     justify-content: space-between;
 
     &:last-child {
@@ -258,6 +257,7 @@ export default {
   }
   .aboutme__skills-key {
     flex: .6;
+    padding-left: 12px;
   }
 
   .aboutme__skills-value {

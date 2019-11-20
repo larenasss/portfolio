@@ -110,9 +110,9 @@ export default {
     ...mapActions("reviews", ["fethReview", "addReview","editReview"]),
     createForm() {
       this.isEdit = false;
-      this.renderedPhoto = ""
       this.isShown = true;
-      this.editedReview = {...this.review}
+      this.editedReview = { ...this.review }
+      
     },
     appendFileAndRenderFoto(e) {
       const file = e.target.files[0];
@@ -144,13 +144,14 @@ export default {
         try {
           if (this.isEdit) {
             this.editReview(this.editedReview);
-            this.isShown = false;
+            this.isShown = false;  
         } else {
           this.addReview(this.editedReview),
           this.isShown = false;
           this.renderedPhoto = ""
         }
       } catch (error) {
+        
       }
 
       })

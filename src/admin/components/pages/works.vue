@@ -135,8 +135,8 @@ export default {
      createForm() {
       this.isEdit = false;
       this.isShown = true;
-      this.renderedPhoto = ""
-      this.editedWork = {...this.work}
+      this.editedWork = {...this.work};
+      this.renderedPhoto = "";
     },
     appendFileAndRenderFoto(e) {
       const file = e.target.files[0];
@@ -168,6 +168,8 @@ export default {
         try {
           if (this.isEdit) {
             this.editWork(this.editedWork);
+            console.log(this.editedWork);
+            
             this.isShown = false;
         } else {
           this.addWork(this.editedWork),

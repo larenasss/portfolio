@@ -27,7 +27,7 @@ export default {
       editedCategory: { ...this.category },
     }
   },
-  mounted() {
+  created() {
     this.fetchCategories();
   },
   computed: {
@@ -36,7 +36,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions("categories", ["editCategory", "fetchCategories"]),
+    ...mapActions("categories", ["fetchCategories", "editCategory"]),
     closeNewCategory() {
       this.$emit('closeNewCategory')
     },
@@ -46,6 +46,7 @@ export default {
     async editExitedCategory() {
       try {
         await this.editCategory(this.editedCategory);
+        this.fetchCategories();
         this.editMode = false;
       } catch (error) {
       }

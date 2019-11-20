@@ -52,19 +52,23 @@ html(lang="en")
                       li.menu__item
                         a(href="#sr6").menu__link.scroll-to Связаться
                 .welcome__social
-                  - var icons = ['insta', 'vk', 'github'] 
                   ul.socials
-                    each item in icons
-                      li.socials__item
-                        a(href="#").socials__link
-                          +icon(`${item}`, 'socials__icon')
+                    li.socials__item
+                      a(href="https://www.instagram.com/__larenasss/").socials__link
+                        +icon('insta', 'socials__icon')
+                    li.socials__item
+                      a(href="https://vk.com/larenasss").socials__link
+                        +icon('vk', 'socials__icon')
+                    li.socials__item
+                      a(href="#").socials__link
+                        +icon('github', 'socials__icon')
                 .welcome__gamburger
                   button.gamburger(
                      @click="menuIsOpened = !menuIsOpened"
                   )
                      .gamburger__item
                   transition(name="slide")
-                     section.fullscreen-menu(v-if="menuIsOpened")
+                     section.fullscreen-menu
                       .container.fullscreen-menu__container
                         .fullscreen-menu__content
                           nav.fullscreen-menu__nav
@@ -92,12 +96,16 @@ html(lang="en")
                                 @click="closeMenu"
                                 ).fullscreen-menu__link.scroll-to Связаться
                             .fullscreen-menu__social
-                               - var icons = ['insta', 'vk', 'github'] 
-                               ul.socials
-                                  each item in icons
-                                     li.socials__item.socials__item
-                                        a(href="#").socials__link
-                                           +icon(`${item}`, 'socials__icon--fullscreen')
+                              ul.socials
+                                li.socials__item
+                                  a(href="https://www.instagram.com/__larenasss/").socials__link
+                                    +icon('insta', 'socials__icon--fullscreen')
+                                li.socials__item
+                                  a(href="https://vk.com/larenasss").socials__link
+                                    +icon('vk', 'socials__icon--fullscreen')
+                                li.socials__item
+                                  a(href="#").socials__link
+                                    +icon('github', 'socials__icon--fullscreen')
                             .fullscreen-menu__close
               .welcome__content
                 .user-info.user-info--nodisplay
@@ -211,10 +219,15 @@ html(lang="en")
                     .social.footer__social
                       - var icons = ['insta', 'vk', 'github'] 
                       ul.socials
-                        each item in icons
-                          li.socials__item.social__item--footer
-                            a(href="#").socials__link
-                              +icon(`${item}`, 'socials__icon')
+                        li.socials__item.social__item--footer
+                          a(href="https://www.instagram.com/__larenasss/").socials__link
+                            +icon('insta', 'socials__icon')
+                        li.socials__item.social__item--footer
+                          a(href="https://vk.com/larenasss").socials__link
+                            +icon('vk', 'socials__icon')
+                        li.socials__item.social__item--footer
+                          a(href="#").socials__link
+                            +icon('github', 'socials__icon')
                   .footer__quote
                     .text.footer__quote-text
                       p Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете

@@ -50,9 +50,17 @@ export default {
         
       }
     },
-    async editWork({commit}, editedWork) { 
+    async editWork({commit}, editedWork) {
+      const formDataWork = new FormData();
+
+      formDataWork.append('title', editedWork.title);
+      formDataWork.append('techs', editedWork.techs);
+      formDataWork.append('photo', editedWork.photo);
+      formDataWork.append('link', editedWork.link);
+      formDataWork.append('description', editedWork.description);
+
       try {
-        const {data} = await this.$axios.post(`/works/${editedWork.id}`, editedWork)
+        const {data} = await this.$axios.post(`/works/${editedWork.id}`, formDataWork)
         commit("EDIT_WORK", data.work)
       } catch (error) {
         

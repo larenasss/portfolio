@@ -1,8 +1,10 @@
 .tags {
    display: flex;
+   flex-wrap: wrap;
 
    @include tablets {
       justify-content: center;
+      flex-wrap: nowrap;
    }
 }
 
@@ -13,10 +15,12 @@
    padding: 8px 25px;
    background-color: #f3f5f9;
    margin-right: 10px;
+   margin-bottom: 10px;
    border-radius: 30px;
    font-size: 15px;
    font-weight: 600;
    opacity: 0.7;
+
 
    &:last-child {
       margin-right: 0;

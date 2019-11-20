@@ -12,7 +12,8 @@ fullScreenMenuBtn.addEventListener("click", e => {
 
 fullScreenMenuBtnClose.addEventListener("click", e => {
   e.preventDefault();
-  fullScreenMenu.style.right = "-35%"
+  fullScreenMenu.style.transition = "2s"
+  fullScreenMenu.style.right = "-100%"
 })
 
 scrollBtn.addEventListener("click", e => {
@@ -27,7 +28,7 @@ for (let anchor of anchors) {
   anchor.addEventListener('click', function (e) {
     e.preventDefault()
     fullScreenMenu.style.transition = ".2s"
-    fullScreenMenu.style.right = '-35%'
+    fullScreenMenu.style.right = '-100%'
     
     
     const blockID = anchor.getAttribute('href')
