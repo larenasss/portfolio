@@ -7,7 +7,7 @@
             @submit.prevent="addNewReview"
           )
             .form__title.reviews__form-title Новый отзыв
-            .form__content
+            .form__content.form__content-reviews
               .user
                 label.user__img
                   input(
@@ -185,6 +185,12 @@ export default {
     font-size: 21px;
     font-weight: 700;
     padding: 50px 0;
+  }
+
+  .form__content-reviews {
+    @include phones {
+      flex-direction: column;
+    }
   }
   
   .user {

@@ -300,12 +300,17 @@ export default {
 
   .tags {
     display: flex;
+
+    @include phones {
+      flex-wrap: wrap;
+    }
   }
 
   .tags__item {
     display: flex;
     align-items: center;
     margin-right: 20px;
+    margin-bottom: 20px;
     padding: 1% 3%;
     background-color: #f4f4f4;
     border-radius: 15px;

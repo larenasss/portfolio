@@ -1,8 +1,8 @@
 <template lang="pug">
   .maincontent
-    header_auto
-    menu_auto
-    router-view
+    header_auto(v-if="notShow")
+    menu_auto(v-if="notShow")
+    router-view(v-if="noLogin")
 </template>
 
 <script>
@@ -15,9 +15,24 @@ export default {
     header_auto,
     menu_auto,
   },
-  data () {
+  data() {
     return {
-      
+      notShow: false,
+      noLogin: false
+    }
+  },
+  mounted() {
+    let isUserLoginMain = store.getters["user/userIsLogged"];
+
+    if(isUserLoginMain === false) {
+      this.noLogin = true
+    }
+  },
+  updated() {
+    let isUserLoginMain = store.getters["user/userIsLogged"];
+    
+    if(isUserLoginMain === true) {
+      this.notShow = true
     }
   }
 }
@@ -319,6 +334,10 @@ export default {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    @include phones {
+      justify-content: center;
+    }
   }
 
   .form__row-link {

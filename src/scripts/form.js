@@ -57,7 +57,7 @@ function validateForm(form) {
          if(formBlock[i].classList.contains('active')) {
             formBlock[i].classList.remove('active')
          }
-      })   
+      })
    }
 
    if(regEmail.test(emailValue) == false) {
@@ -68,6 +68,7 @@ function validateForm(form) {
             formBlockEmail.classList.remove('active')
          }
       });
+      return false;
    }
    
 
