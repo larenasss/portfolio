@@ -106,6 +106,7 @@ export default {
 
     @include phones {
       flex-direction: column;
+      flex-wrap: nowrap;
     }
   }
 
