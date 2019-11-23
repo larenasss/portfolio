@@ -111,9 +111,6 @@ export default {
   }
 
   .aboutme__item {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     padding: 15px 20px 20px 20px;
     max-width: 525px;
     height: 387px;
