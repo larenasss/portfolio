@@ -13,6 +13,7 @@
           categoryAdd(
             v-if="categoryAdd"
             @closeNewCategory="closeNewCategory"
+            @closeNewCategoryItem="closeNewCategoryItem"
             :category="category"
           )
           li.aboutme__item(v-for="category in categories" :key="category.id")
@@ -132,7 +133,7 @@ export default {
     }
   }
 
-  .aboutme__item-cont {
+  .aboutme__item-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

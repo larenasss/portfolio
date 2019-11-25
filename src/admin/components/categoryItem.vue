@@ -1,5 +1,5 @@
 <template lang="pug">
-    .aboutme__item-cont
+    .aboutme__item-content
       categoryAddinput(
         :category="category"
         @removeCategory="removeCategory"

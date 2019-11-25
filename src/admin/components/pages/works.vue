@@ -311,7 +311,7 @@ export default {
     align-items: center;
     margin-right: 20px;
     margin-bottom: 20px;
-    padding: 1% 3%;
+    padding: 6px 12px;
     background-color: #f4f4f4;
     border-radius: 15px;
     opacity: 0.7;
